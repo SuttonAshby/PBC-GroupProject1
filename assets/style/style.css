@@ -1,0 +1,23 @@
+.container {
+    background: grey;
+}
+
+.currentLocation {
+    background: gold;
+}
+
+.avatar {
+    background: dodgerblue;
+}
+
+.timeRemaining {
+    background: darksalmon;
+}
+
+.locationChoice1 {
+    background: darksalmon;
+}
+
+.locationChoice2 {
+    background: darksalmon;
+}
