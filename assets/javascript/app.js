@@ -1,3 +1,21 @@
+$(".location").on("click", function () {
+    var city = $(this).html() + ".json";
+    console.log(city);
+
+    var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+        var results = response.current_observation;
+        var weather = results.weather;
+        console.log(weather);
+
+
+    })
+})
 
 var config = {
   apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
@@ -10,8 +28,8 @@ var database = firebase.database()
 
 //add to leaderboard
 database.once("value", function(snapshot){
-	var userName = //submit form name
-	var userScore = // time remaining
+	var userName;//submit form name
+	var userScore; // time remaining
 	database.ref().push({
 		Name: userName, 
 		Score: userScore
