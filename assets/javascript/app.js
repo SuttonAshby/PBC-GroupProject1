@@ -1,5 +1,5 @@
 $(".location").on("click", function () {
-    var city = $(".location").html() + ".json";
+    var city = $(this).html() + ".json";
     console.log(city);
 
     var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
