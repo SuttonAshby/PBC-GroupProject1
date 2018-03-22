@@ -49,7 +49,7 @@ $(document).ready(function () {
     var difficulty = $(this).attr("data-name");
 
     var getQuestions = function () {
-        var queryURL = "https://opentdb.com/api.php?amount=1&" + 
+        var queryURL = "https://opentdb.com/api.php?amount=1&" + categorie + "&" + difficulty;
         $.ajax({
             url: queryURL,
             method: "GET"
