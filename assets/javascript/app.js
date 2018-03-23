@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+    
+    
+    
     // example question
 
     /* {
@@ -112,6 +114,8 @@ database.once("value", function(snapshot){
 })
 
 
+
+
 //pull leaderboard
 
 database.orderByChild("Score").limitToFirst(10).once("value", function(snapshot){
@@ -135,4 +139,13 @@ $('.modal').modal({
    //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //complete: function() { alert('Closed'); }  
   })
+
+
+
+
+//end the document ready function
 });
+
+
+
+

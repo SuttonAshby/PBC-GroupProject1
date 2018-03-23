@@ -9,11 +9,13 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link href="assets/style/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="clock_assets/flipclock.css" />
+  <script type="text/javascript" src="clock_assets/flipclock.js"></script>
 </head>
 <body>
-  
-
-
   <div class="container">
     <div class="section">
       <!--   Icon Section   -->
@@ -24,8 +26,8 @@
         <div class="col s4 push-s1 currentLocation">
             <p>Current Location</p>
         </div>
-        <div class="col s2 offset-s4 timeRemaining">
-            <p>Time Remaining</p>
+        <div class="col s4 offset-s2 timeRemaining">
+                <div class="clock-builder-output"></div>
         </div>
     </div>
     
@@ -109,9 +111,9 @@
 
 
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="assets/javascript/clock.js"></script>
   <script src="assets/javascript/app.js"></script>
+  
 
   </body>
 </html>
