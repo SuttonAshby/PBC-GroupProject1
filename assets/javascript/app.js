@@ -50,8 +50,8 @@ $(document).ready(function () {
 
     var getQuestions = function () {
 
-});
-        var queryURL = "https://opentdb.com/api.php?amount=1&" + 
+    };
+    var queryURL = "https://opentdb.com/api.php?amount=1&" +
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -73,67 +73,78 @@ $(document).ready(function () {
             };
 
         });
+    
+    // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
 
-$(".location").on("click", function () {
-    var city = $(this).html() + ".json";
-    console.log(city);
+    $(".correct").on("click", function () {
+        var city = $("CITY NAME").val() + ".json";
+        console.log(city);
 
-    var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
+        var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        var results = response.current_observation;
-        var weather = results.weather;
-        console.log(weather);
-
-
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            var results = response.current_observation;
+            var weather = results.weather;
+            console.log(weather);
+            
+            // Changing TOTALTIME based on current weather condition of user travel location
+            if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds")) {
+                TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
+            } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
+                // Go to random location for really bad weather
+            } else {
+                TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
+            }
+        })
     })
-})
 
-var config = {
-  apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
-  databaseURL: "https://pbc-groupproject1.firebaseio.com/"
-};
+    var config = {
+        apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
+        databaseURL: "https://pbc-groupproject1.firebaseio.com/"
+    };
 
-firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
-var database = firebase.database()
+    var database = firebase.database();
 
-//add to leaderboard
-database.once("value", function(snapshot){
-	var userName;//submit form name
-	var userScore; // time remaining
-	database.ref().push({
-		Name: userName, 
-		Score: userScore
-	})
-})
+    //add to leaderboard
+    database.once("value", function (snapshot) {
+        var userName;//submit form name
+        var userScore; // time remaining
+        database.ref().push({
+            Name: userName,
+            Score: userScore
+        })
+    })
 
 
-//pull leaderboard
+    //pull leaderboard
 
-database.orderByChild("Score").limitToFirst(10).once("value", function(snapshot){
-	snapshot.forEach(function(child){
-		var name = child.val().Name
-		var score = child.val().Score
-		$("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><tr>")
-	})
-})
+    database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
+        snapshot.forEach(function (child) {
+            var name = child.val().Name
+            var score = child.val().Score
+            $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><tr>")
+        })
+    })
 
-$('.modal').modal({
-    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-    opacity: .5, // Opacity of modal background
-    inDuration: 300, // Transition in duration
-    outDuration: 200, // Transition out duration
-    startingTop: '4%', // Starting top style attribute
-    endingTop: '10%', // Ending top style attribute
-    //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-      //console.log(modal, trigger);
-   // },
-   //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //complete: function() { alert('Closed'); }  
-  }
-  );
+    $('.modal').modal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        inDuration: 300, // Transition in duration
+        outDuration: 200, // Transition out duration
+        startingTop: '4%', // Starting top style attribute
+        endingTop: '10%', // Ending top style attribute
+        //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        //console.log(modal, trigger);
+        // },
+        //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //complete: function() { alert('Closed'); }  
+    })
+
+    
+});
