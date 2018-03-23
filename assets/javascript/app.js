@@ -51,7 +51,12 @@ $(document).ready(function () {
 
     var getQuestions = function () {
 
+<<<<<<< HEAD
         var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=" + difficulty + "&type=multiple";
+=======
+});
+        var queryURL = "https://opentdb.com/api.php?amount=1&" + 
+>>>>>>> 53e1bfa018f21548820294d1c47147a716a687fa
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -59,6 +64,7 @@ $(document).ready(function () {
 
             //question functions
             function makeQuestionButtons() {
+<<<<<<< HEAD
                 questionText = $("<h4 id='questionText'>").text(response.results[0].question);
                 option1 = $("<button id='option1'>").text(question.answers.correct_answer).addClass("option correct");
                 questionButtons[0] = option1;
@@ -83,6 +89,22 @@ $(document).ready(function () {
                 };
             };
     });
+=======
+                askedQuestion = results[index];
+                questionText = $("<h4 id='questionText'>").text(results[index].question);
+                option1 = $("<button id='option1'>").text(question.answers.correct_answer).addClass("option correct");
+                questionButtons[0] = option1;
+                option2 = $("<button id='option2'>").text(results[index].incorrect_answers[0]).addClass("option incorrect");
+                questionButtons[1] = option2;
+                option3 = $("<button id='option3'>").text(results[index].incorrect_answers[1]).addClass("option incorrect");
+                questionButtons[2] = option3;
+                option4 = $("<button id='option4'>").text(results[index].incorrect_answers[2]).addClass("option incorrect");
+                questionButtons[3] = option4;
+                questionButtons.sort(function (a, b) { return 0.5 - Math.random() });
+            };
+
+        });
+>>>>>>> 53e1bfa018f21548820294d1c47147a716a687fa
 
 $(".location").on("click", function () {
     var city = $(this).html() + ".json";
@@ -104,8 +126,13 @@ $(".location").on("click", function () {
 })
 
 var config = {
+<<<<<<< HEAD
     apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
     databaseURL: "https://pbc-groupproject1.firebaseio.com/"
+=======
+  apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
+  databaseURL: "https://pbc-groupproject1.firebaseio.com/"
+>>>>>>> 53e1bfa018f21548820294d1c47147a716a687fa
 };
 
 firebase.initializeApp(config);
@@ -113,6 +140,7 @@ firebase.initializeApp(config);
 var database = firebase.database()
 
 //add to leaderboard
+<<<<<<< HEAD
 database.once("value", function (snapshot) {
     var userName;//submit form name
     var userScore; // time remaining
@@ -120,17 +148,35 @@ database.once("value", function (snapshot) {
         Name: userName,
         Score: userScore
     })
+=======
+database.once("value", function(snapshot){
+	var userName;//submit form name
+	var userScore; // time remaining
+	database.ref().push({
+		Name: userName, 
+		Score: userScore
+	})
+>>>>>>> 53e1bfa018f21548820294d1c47147a716a687fa
 })
 
 
 //pull leaderboard
 
+<<<<<<< HEAD
 database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
     snapshot.forEach(function (child) {
         var name = child.val().Name
         var score = child.val().Score
         $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><tr>")
     })
+=======
+database.orderByChild("Score").limitToFirst(10).once("value", function(snapshot){
+	snapshot.forEach(function(child){
+		var name = child.val().Name
+		var score = child.val().Score
+		$("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><tr>")
+	})
+>>>>>>> 53e1bfa018f21548820294d1c47147a716a687fa
 })
 
 $('.modal').modal({
@@ -141,6 +187,7 @@ $('.modal').modal({
     startingTop: '4%', // Starting top style attribute
     endingTop: '10%', // Ending top style attribute
     //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+<<<<<<< HEAD
     //console.log(modal, trigger);
     // },
     //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -149,3 +196,11 @@ $('.modal').modal({
 )
 }
 });
+=======
+      //console.log(modal, trigger);
+   // },
+   //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //complete: function() { alert('Closed'); }  
+  }
+  );
+>>>>>>> 53e1bfa018f21548820294d1c47147a716a687fa
