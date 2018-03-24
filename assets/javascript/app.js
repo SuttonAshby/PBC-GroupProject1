@@ -112,36 +112,36 @@ $(document).ready(function () {
         })
     })
 
-    var config = {
-        apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
-        databaseURL: "https://pbc-groupproject1.firebaseio.com/"
-    };
+    // var config = {
+    //     apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
+    //     databaseURL: "https://pbc-groupproject1.firebaseio.com/"
+    // };
 
-    firebase.initializeApp(config);
+    // firebase.initializeApp(config);
 
-    var database = firebase.database();
+    // var database = firebase.database();
 
-    //add to leaderboard
-    var userName;//submit form name
-    var userScore; // time it took to finish
-    var categoryChoice; //what category did they play
-    database.ref().child(userName).set({
-        Name: userName,
-        Score: userScore,
-        Category: categoryChoice
-    })
+    // //add to leaderboard
+    // var userName;//submit form name
+    // var userScore; // time it took to finish
+    // var categoryChoice; //what category did they play
+    // database.ref().child(userName).set({
+    //     Name: userName,
+    //     Score: userScore,
+    //     Category: categoryChoice
+    // })
 
 
     //pull leaderboard
 
-    database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
-        snapshot.forEach(function (child) {
-            var name = child.val().Name;
-            var score = child.val().Score;
-            var category = child.val().Category;
-            $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
-        })
-    })
+    // database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
+    //     snapshot.forEach(function (child) {
+    //         var name = child.val().Name;
+    //         var score = child.val().Score;
+    //         var category = child.val().Category;
+    //         $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
+    //     })
+    // })
 
     $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -158,7 +158,13 @@ $(document).ready(function () {
     }
     );
 
-    $(document).on("")
+
+
+    // $(".card-title").load(function() {
+    //     $(".locationChoice1", ".card-title").text(countries.mexico.city + ", " + countries.mexico.country);
+    //     $(".locationChoice2", ".card-title").text(countries.canada.city + ", " + countries.canada.country);
+
+    // })
     var countries = {
         usa: {
             city: "New York City",
@@ -330,6 +336,46 @@ $(document).ready(function () {
             easyTime: 4,
             hardLoc: "Australia",
             hardTime: 8
+        },
+        key: function (n) {
+            return this[Object.keys(this)[n]];
         }
     }
+
+    var currentLocation = countries.key(0);
+    var displayLocation = currentLocation.city + ", " + currentLocation.country;
+    $("#current").text(displayLocation);
+
+    function cardDestination() {
+        var easyOption = currentLocation.easyLoc;
+        var hardOption = currentLocation.hardLoc;
+
+        var card1 = countries[easyOption].city + ", " + countries[easyOption].country;
+        var card2 = countries[hardOption].city + ", " + countries[hardOption].country;
+
+        $(".card1").text(card1);
+        $(".card2").text(card2);
+
+        $(".card").on("click", function () {
+            if ($(this).attr("id", "card1")) {
+                currentLocation = countries[easyOption];
+                displayLocation = card1;
+            } else {
+                currentLocaton = countries[hardOption];
+                displayLocation = card2;
+            }
+        });
+
+
+    };
+
+    $(".correct").on("click", function () {
+        $("#current").text(displayLocation);
+    })
+
+    $(".incorrect").on("click", function () {
+        // Show other question
+    })
+
+    cardDestination();
 });
