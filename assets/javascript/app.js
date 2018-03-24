@@ -84,6 +84,30 @@ $(document).ready(function () {
         };
     });
 
+    //question functions
+    function makeQuestionButtons() {
+        questionText = $("<h4 id='questionText'>").text(response.results[0].question);
+        option1 = $("<button id='option1'>").text(question.answers.correct_answer).addClass("option correct");
+        questionButtons[0] = option1;
+        option2 = $("<button id='option2'>").text(response.results[0].incorrect_answers[0]).addClass("option incorrect");
+        questionButtons[1] = option2;
+        option3 = $("<button id='option3'>").text(response.results[0].incorrect_answers[1]).addClass("option incorrect");
+        questionButtons[2] = option3;
+        option4 = $("<button id='option4'>").text(response.results[0].incorrect_answers[2]).addClass("option incorrect");
+        questionButtons[3] = option4;
+        questionButtons.sort(function (a, b) { return 0.5 - Math.random() });
+    };
+    function renderQuestionButtons() {
+        if ("NOT AT FINAL ESTINATION") {
+            $(".card").remove();
+            $("#questionText").replaceWith(questionText, "<br>", questionButtons[0], "<br>", questionButtons[1], "<br>", questionButtons[2], "<br>", questionButtons[3]);
+            run();
+        } else if ("AT FINAL DESTINATION") {
+            endGameGood();
+        } else ("OUT OF TIME"); {
+            endGameBad();
+        };
+    };
 });
 
 // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
@@ -121,7 +145,7 @@ var config = {
 
 firebase.initializeApp(config);
 
-var database = firebase.database()
+var database = firebase.database();
 
 //add to leaderboard
 var userName;//submit form name
@@ -160,20 +184,7 @@ $('.modal').modal({
 }
 );
 
-/* countries object with nested specific country
- sample country object
- var countries = {
-    country object name: {
-        city: "Name of city for visuals and weather api call"
-        country: "Name of city for visuals and weather api call"
-        questionType: "question difficulty of this country object"
-        easyLoc: "the easy destination from this country object"
-        easyTime: time in hours as a number to easyLoc
-        hardLoc: "the hard destination from this country object"
-        hardTime: time in hours as a number to hardLoc
-    }
-}
-*/
+$(document).on("")
 var countries = {
     usa: {
         city: "New York City",
