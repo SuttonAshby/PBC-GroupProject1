@@ -51,7 +51,7 @@ $(document).ready(function () {
 
     var getQuestions = function () {
 
-    });
+    };
 var queryURL = "https://opentdb.com/api.php?amount=1&" +
     $.ajax({
         url: queryURL,
@@ -115,7 +115,7 @@ database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot
         $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><tr>")
     })
 })
-})
+
 
 
 var config = {
@@ -131,7 +131,7 @@ var database = firebase.database()
 var userName;//submit form name
 var userScore; // time it took to finish
 var categoryChoice; //what category did they play
-database.ref().push({
+database.ref().child(userName).set({
     Name: userName,
     Score: userScore,
     Category: categoryChoice
@@ -198,7 +198,7 @@ var countries = {
         hardTime: 8
     },
     canada: {
-        city: "Montreal"
+        city: "Montreal",
 		country: "Canada",
         questionType: "easy",
         easyLoc: "venezuela",
@@ -225,7 +225,7 @@ var countries = {
         hardTime: 8
     },
     norway: {
-        city: "Oslo"
+        city: "Oslo",
 		country: "Norway",
         questionType: "hard",
         easyLoc: "morocco",
@@ -350,4 +350,6 @@ var countries = {
         hardLoc: "Australia",
         hardTime: 8
     }
-}
+};
+
+});
