@@ -163,27 +163,27 @@ $(document).ready(function () {
       city: "Port Moresby",
       country: "Papua New Guinea",
       questionType: "hard",
-      easyLoc: "Australia",
+      easyLoc: "australia",
       easyTime: 4,
-      hardLoc: "Australia",
+      hardLoc: "australia",
       hardTime: 8
     },
     japan: {
       city: "Tokyo",
       country: "Japan",
       questionType: "easy",
-      easyLoc: "Australia",
+      easyLoc: "australia",
       easyTime: 4,
-      hardLoc: "Australia",
+      hardLoc: "australia",
       hardTime: 8
     },
     australia: {
       city: "Canberra",
       country: "Australia",
       questionType: "easy",
-      easyLoc: "Australia",
+      easyLoc: "australia",
       easyTime: 4,
-      hardLoc: "Australia",
+      hardLoc: "australia",
       hardTime: 8
     }
   };
