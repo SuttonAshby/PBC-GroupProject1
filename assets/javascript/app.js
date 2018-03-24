@@ -59,6 +59,57 @@ $(document).ready(function () {
 
     var getQuestions = function () {
 
+    // example question
+
+    /* {
+        "response_code": 0,
+        "results": [
+        {
+        "category": "General%20Knowledge",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "This%20field%20is%20sometimes%20known%20as%20%E2%80%9CThe%20Dismal%20Science.%E2%80%9D",
+        "correct_answer": "Economics",
+        "incorrect_answers": [
+        "Philosophy",
+        "Politics",
+        "Physics"
+        ]
+        }, */
+    // question topics
+    var questionCategories = [
+        "General Knowledge",
+        "Entertainment: Books",
+        "Entertainment: Film",
+        "Entertainment: Music",
+        "Entertainment: Musicals & Theater",
+        "Entertainment: Television",
+        "Entertainment: Video Games",
+        "Entertainment: Board Games",
+        "Entertainment: Japanese Anime & Manga",
+        "Entertainment: Cartoons & Animation",
+        "Entertainment: Comics",
+        "Science & Nature",
+        "Science: Computers",
+        "Science: Mathematics",
+        "Science: Gadgets",
+        "Mythology",
+        "Sports",
+        "Geography",
+        "History",
+        "Politics",
+        "Art",
+        "Celebrities",
+        "Animals",
+        "Vehicles",
+    ];
+
+    //open trivia api call
+    var categorie = "9";
+    var difficulty = "hard";
+
+    var getQuestions = function () {
+
     };
     var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=" + difficulty + "&type=multiple";
     $.ajax({
@@ -90,9 +141,7 @@ $(document).ready(function () {
         };
     });
 
-});
-
-// Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
+    // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
 
 $(".correct").on("click", function () {
     var city = $("CITY NAME").val() + ".json";
@@ -138,9 +187,9 @@ var config = {
     databaseURL: "https://pbc-groupproject1.firebaseio.com/"
 };
 
-firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
-var database = firebase.database()
+    var database = firebase.database();
 
 //on click to submit player name
 var playerChoices = function () {
@@ -164,6 +213,20 @@ var playerToLeaderboard = function () {
 
 //pull leaderboard for display at the end of game
 var getLeaderboard = function () {
+
+    //add to leaderboard
+    var userName;//submit form name
+    var userScore; // time it took to finish
+    var categoryChoice; //what category did they play
+    database.ref().child(userName).set({
+        Name: userName,
+        Score: userScore,
+        Category: categoryChoice
+    })
+
+
+    //pull leaderboard
+
     database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
         snapshot.forEach(function (child) {
             var name = child.val().Name;
@@ -172,38 +235,23 @@ var getLeaderboard = function () {
             $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
         })
     })
-}
 
-$('.modal').modal({
-    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-    opacity: .5, // Opacity of modal background
-    inDuration: 300, // Transition in duration
-    outDuration: 200, // Transition out duration
-    startingTop: '4%', // Starting top style attribute
-    endingTop: '10%', // Ending top style attribute
-    //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-    //console.log(modal, trigger);
-    // },
-    //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //complete: function() { alert('Closed'); }  
-}
-);
-
-/* countries object with nested specific country
- sample country object
- var countries = {
-    country object name: {
-        city: "Name of city for visuals and weather api call"
-        country: "Name of city for visuals and weather api call"
-        questionType: "question difficulty of this country object"
-        easyLoc: "the easy destination from this country object"
-        easyTime: time in hours as a number to easyLoc
-        hardLoc: "the hard destination from this country object"
-        hardTime: time in hours as a number to hardLoc
+    $('.modal').modal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        inDuration: 300, // Transition in duration
+        outDuration: 200, // Transition out duration
+        startingTop: '4%', // Starting top style attribute
+        endingTop: '10%', // Ending top style attribute
+        //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        //console.log(modal, trigger);
+        // },
+        //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //complete: function() { alert('Closed'); }  
     }
-}
-*/
-var countries = {
+    );
+
+  var countries = {
     usa: {
         city: "New York City",
         country: "United States of America",
@@ -376,3 +424,4 @@ var countries = {
         hardTime: 8
     }
 };
+});
