@@ -86,25 +86,11 @@ $(document).ready(function () {
 
 });
 
-
 var config = {
     apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
     databaseURL: "https://pbc-groupproject1.firebaseio.com/"
 };
 
-firebase.initializeApp(config);
-
-var database = firebase.database()
-
-//add to leaderboard
-var userName;//submit form name
-var userScore; // time it took to finish
-var categoryChoice; //what category did they play
-database.ref().child(userName).set({
-    Name: userName,
-    Score: userScore,
-    Category: categoryChoice
-})
 
 // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
 
@@ -141,35 +127,16 @@ var config = {
 
 firebase.initializeApp(config);
 
-var database = firebase.database();
-
-//add to leaderboard
-database.once("value", function (snapshot) {
-    var userName;//submit form name
-    var userScore; // time remaining
-    database.ref().push({
-        Name: userName,
-        Score: userScore
-    })
-})
-
-var config = {
-    apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
-    databaseURL: "https://pbc-groupproject1.firebaseio.com/"
-};
-
-firebase.initializeApp(config);
-
 var database = firebase.database()
 
 //add to leaderboard
-database.once("value", function (snapshot) {
-    var userName;//submit form name
-    var userScore; // time remaining
-    database.ref().push({
-        Name: userName,
-        Score: userScore
-    })
+var userName;//submit form name
+var userScore; // time it took to finish
+var categoryChoice; //what category did they play
+database.ref().child(userName).set({
+    Name: userName,
+    Score: userScore,
+    Category: categoryChoice
 })
 
 
