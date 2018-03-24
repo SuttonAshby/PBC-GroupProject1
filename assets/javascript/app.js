@@ -86,13 +86,6 @@ $(document).ready(function () {
 
 });
 
-
-var config = {
-  apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
-  databaseURL: "https://pbc-groupproject1.firebaseio.com/"
-};
-
-
 // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
 
 $(".correct").on("click", function () {
