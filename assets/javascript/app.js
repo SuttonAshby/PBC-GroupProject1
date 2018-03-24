@@ -262,11 +262,13 @@ $(document).ready(function () {
   };
 
   $(document).on("click", ".correct", function () {
-    goodJob();
+    getQuestions();
+    /* goodJob(); */
   });
 
   $(document).on("click", ".incorrect", function () {
-    badJob();
+    getQuestions();
+    /* badJob(); */
   });
 
   $(document).on("click", ".card-reveal", function () {
@@ -276,7 +278,7 @@ $(document).ready(function () {
 
   // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
 
-  $(".correct").on("click", function () {
+  $(document).on("click", ".correct", function () {
     var city = $("CITY NAME").val() + ".json";
     console.log(city);
 
