@@ -128,25 +128,6 @@ var config = {
 
 firebase.initializeApp(config);
 
-var database = firebase.database();
-
-//add to leaderboard
-database.once("value", function (snapshot) {
-  var userName;//submit form name
-  var userScore; // time remaining
-  database.ref().push({
-    Name: userName,
-    Score: userScore
-  })
-})
-
-var config = {
-  apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
-  databaseURL: "https://pbc-groupproject1.firebaseio.com/"
-};
-
-firebase.initializeApp(config);
-
 var database = firebase.database()
 
 //add to leaderboard
@@ -373,5 +354,3 @@ var countries = {
     hardTime: 8
   }
 };
-
-});
