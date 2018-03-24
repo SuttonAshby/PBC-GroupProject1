@@ -50,29 +50,29 @@ $(document).ready(function () {
 
     var getQuestions = function () {
 
-});
-        var queryURL = "https://opentdb.com/api.php?amount=1&" + 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
+    });
+var queryURL = "https://opentdb.com/api.php?amount=1&" +
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
 
-            //question functions
-            function makeQuestionButtons() {
-                askedQuestion = results[index];
-                questionText = $("<h4 id='questionText'>").text(results[index].question);
-                option1 = $("<button id='option1'>").text(question.answers.correct_answer).addClass("option correct");
-                questionButtons[0] = option1;
-                option2 = $("<button id='option2'>").text(results[index].incorrect_answers[0]).addClass("option incorrect");
-                questionButtons[1] = option2;
-                option3 = $("<button id='option3'>").text(results[index].incorrect_answers[1]).addClass("option incorrect");
-                questionButtons[2] = option3;
-                option4 = $("<button id='option4'>").text(results[index].incorrect_answers[2]).addClass("option incorrect");
-                questionButtons[3] = option4;
-                questionButtons.sort(function (a, b) { return 0.5 - Math.random() });
-            };
+        //question functions
+        function makeQuestionButtons() {
+            askedQuestion = results[index];
+            questionText = $("<h4 id='questionText'>").text(results[index].question);
+            option1 = $("<button id='option1'>").text(question.answers.correct_answer).addClass("option correct");
+            questionButtons[0] = option1;
+            option2 = $("<button id='option2'>").text(results[index].incorrect_answers[0]).addClass("option incorrect");
+            questionButtons[1] = option2;
+            option3 = $("<button id='option3'>").text(results[index].incorrect_answers[1]).addClass("option incorrect");
+            questionButtons[2] = option3;
+            option4 = $("<button id='option4'>").text(results[index].incorrect_answers[2]).addClass("option incorrect");
+            questionButtons[3] = option4;
+            questionButtons.sort(function (a, b) { return 0.5 - Math.random() });
+        };
 
-        });
+    });
 
 $(".location").on("click", function () {
     var city = $(this).html() + ".json";
@@ -95,8 +95,8 @@ $(".location").on("click", function () {
 
 
 var config = {
-  apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
-  databaseURL: "https://pbc-groupproject1.firebaseio.com/"
+    apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
+    databaseURL: "https://pbc-groupproject1.firebaseio.com/"
 };
 
 firebase.initializeApp(config);
@@ -104,24 +104,24 @@ firebase.initializeApp(config);
 var database = firebase.database()
 
 //add to leaderboard
-database.once("value", function(snapshot){
-	var userName;//submit form name
-	var userScore; // time remaining
-	database.ref().push({
-		Name: userName, 
-		Score: userScore
-	})
+database.once("value", function (snapshot) {
+    var userName;//submit form name
+    var userScore; // time remaining
+    database.ref().push({
+        Name: userName,
+        Score: userScore
+    })
 })
 
 
 //pull leaderboard
 
-database.orderByChild("Score").limitToFirst(10).once("value", function(snapshot){
-	snapshot.forEach(function(child){
-		var name = child.val().Name
-		var score = child.val().Score
-		$("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><tr>")
-	})
+database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
+    snapshot.forEach(function (child) {
+        var name = child.val().Name
+        var score = child.val().Score
+        $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><tr>")
+    })
 })
 
 $('.modal').modal({
@@ -132,14 +132,10 @@ $('.modal').modal({
     startingTop: '4%', // Starting top style attribute
     endingTop: '10%', // Ending top style attribute
     //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-      //console.log(modal, trigger);
-   // },
-   //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //console.log(modal, trigger);
+    // },
+    //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //complete: function() { alert('Closed'); }  
-  }
-<<<<<<< HEAD
-  );
+}
+);
 
-=======
-  );
->>>>>>> 7ab38edcbce674406635d37fccbe1bc39f19c29a
