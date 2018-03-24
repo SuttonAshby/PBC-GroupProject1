@@ -175,179 +175,6 @@ $('.modal').modal({
 }
 */
 var countries = {
-<<<<<<< HEAD
-    usa: {
-        city: "New York City",
-        country: "United States of America",
-        questionType: "easy",
-        easyLoc: "canada",
-        easyTime: 4,
-        hardLoc: "mexico",
-        hardTime: 8
-    },
-    mexico: {
-        city: "Mexico City",
-        country: "Mexico",
-        questionType: "hard",
-        easyLoc: "venezuela",
-        easyTime: 4,
-        hardLoc: "argentina",
-        hardTime: 8
-    },
-    canada: {
-        city: "Montreal",
-		country: "Canada",
-        questionType: "easy",
-        easyLoc: "venezuela",
-        easyTime: 4,
-        hardLoc: "norway",
-        hardTime: 8
-    },
-    argentina: {
-        city: "Buenos Aires",
-        country: "Argentina",
-        questionType: "hard",
-        easyLoc: "morocco",
-        easyTime: 4,
-        hardLoc: "southAfrica",
-        hardTime: 8
-    },
-    venezuela: {
-        city: "Caracas",
-        country: "Venezuela",
-        questionType: "easy",
-        easyLoc: "morocco",
-        easyTime: 4,
-        hardLoc: "southAfrica",
-        hardTime: 8
-    },
-    norway: {
-        city: "Oslo",
-		country: "Norway",
-        questionType: "hard",
-        easyLoc: "morocco",
-        easyTime: 4,
-        hardLoc: "southAfrica",
-        hardTime: 8
-    },
-    southAfrica: {
-        city: "Cape Town",
-        country: "South Africa",
-        questionType: "hard",
-        easyLoc: "yemen",
-        easyTime: 4,
-        hardLoc: "djibouti",
-        hardTime: 8
-    },
-    morocco: {
-        city: "Casablanca",
-        country: "Morocco",
-        questionType: "easy",
-        easyLoc: "yemen",
-        easyTime: 4,
-        hardLoc: "malta",
-        hardTime: 8
-    },
-    djibouti: {
-        city: "Djibouti",
-        country: "Djibouti",
-        questionType: "hard",
-        easyLoc: "turkmenistan",
-        easyTime: 4,
-        hardLoc: "india",
-        hardTime: 8
-    },
-    yemen: {
-        city: "Sana'a",
-        country: "Yemen",
-        questionType: "easy",
-        easyLoc: "turkmenistan",
-        easyTime: 4,
-        hardLoc: "india",
-        hardTime: 8
-    },
-    malta: {
-        city: "Valletta",
-        country: "Malta",
-        questionType: "hard",
-        easyLoc: "turkmenistan",
-        easyTime: 4,
-        hardLoc: "india",
-        hardTime: 8
-    },
-    india: {
-        city: "New Delhi",
-        country: "India",
-        questionType: "hard",
-        easyLoc: "china",
-        easyTime: 4,
-        hardLoc: "indonesia",
-        hardTime: 8
-    },
-    turkmenistan: {
-        city: "Ashgabat",
-        country: "Turkmenistan",
-        questionType: "easy",
-        easyLoc: "china",
-        easyTime: 4,
-        hardLoc: "Russia",
-        hardTime: 8
-    },
-    indonesia: {
-        city: "Jakarta",
-        country: "Indonesia",
-        questionType: "hard",
-        easyLoc: "japan",
-        easyTime: 4,
-        hardLoc: "papuaNewGuinea",
-        hardTime: 8
-    },
-    china: {
-        city: "Beijing",
-        country: "China",
-        questionType: "easy",
-        easyLoc: "japan",
-        easyTime: 4,
-        hardLoc: "papuaNewGuinea",
-        hardTime: 8
-    },
-    russia: {
-        city: "Moscow",
-        country: "Russia",
-        questionType: "hard",
-        easyLoc: "japan",
-        easyTime: 4,
-        hardLoc: "papuaNewGuinea",
-        hardTime: 8
-    },
-    papuaNewGuinea: {
-        city: "Port Moresby",
-        country: "Papua New Guinea",
-        questionType: "hard",
-        easyLoc: "australia",
-        easyTime: 4,
-        hardLoc: "australia",
-        hardTime: 8
-    },
-    japan: {
-        city: "Tokyo",
-        country: "Japan",
-        questionType: "easy",
-        easyLoc: "australia",
-        easyTime: 4,
-        hardLoc: "australia",
-        hardTime: 8
-    },
-    australia: {
-        city: "Canberra",
-        country: "Australia",
-        questionType: "easy",
-        easyLoc: "australia",
-        easyTime: 4,
-        hardLoc: "australia",
-        hardTime: 8
-    }
-=======
   usa: {
     city: "New York City",
     country: "United States of America",
@@ -496,28 +323,27 @@ var countries = {
     city: "Port Moresby",
     country: "Papua New Guinea",
     questionType: "hard",
-    easyLoc: "Australia",
+    easyLoc: "australia",
     easyTime: 4,
-    hardLoc: "Australia",
+    hardLoc: "australia",
     hardTime: 8
   },
   japan: {
     city: "Tokyo",
     country: "Japan",
     questionType: "easy",
-    easyLoc: "Australia",
+    easyLoc: "australia",
     easyTime: 4,
-    hardLoc: "Australia",
+    hardLoc: "australia",
     hardTime: 8
   },
   australia: {
     city: "Canberra",
     country: "Australia",
     questionType: "easy",
-    easyLoc: "Australia",
+    easyLoc: "australia",
     easyTime: 4,
-    hardLoc: "Australia",
+    hardLoc: "australia",
     hardTime: 8
   }
->>>>>>> 83170a5352275feb06d82941ac5634f2e5d5c121
 };
