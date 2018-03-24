@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var userName; //user name get from opening submit form. Make input required
+    var userName = undefined; //user name get from opening submit form. Make input required
     var TOTALTIME; // starts at zero ends at time value to complete game 
     var categoryChoice; //user category choice get from opening submit form. Make input required
 
@@ -84,10 +84,8 @@ $(document).ready(function () {
                 $(".card").remove();
                 $("#questionText").replaceWith(questionText, "<br>", questionButtons[0], "<br>", questionButtons[1], "<br>", questionButtons[2], "<br>", questionButtons[3]);
                 run();
-            } else if ("AT FINAL DESTINATION") {
-                endGameGood();
-            } else ("OUT OF TIME"); {
-                endGameBad();
+            } else {
+                endGame();
             };
         };
     });
@@ -122,6 +120,19 @@ $(".correct").on("click", function () {
     })
 })
 
+//returns a random location from the array to be sent to due to bad weather
+var goRand = function () {
+    return randLocs[Math.floor(Math.random() * randLocs.length)]
+}
+
+//when reaching final destination
+var endgame = function () {
+    playerToLeaderboard() //push player info to leaderboard
+    getLeaderboard() //get leaderboard for display
+    //restart game button
+
+}
+
 var config = {
     apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
     databaseURL: "https://pbc-groupproject1.firebaseio.com/"
@@ -132,11 +143,14 @@ firebase.initializeApp(config);
 var database = firebase.database()
 
 //on click to submit player name
-var addPlayer = function () {
-    userName = $(nameInput).val().trim()
-    userName = JSON.stringify(userName)
+var playerChoices = function () {
+    if (userName === undefined) {
+        userName = $(nameInput).val().trim();
+        userName = JSON.stringify(userName);
+    }
+    categoryChoice = $(categoryInput)
 }
-$("#submit").on("click", addPlayer)
+$("#submit").on("click", playerChoices)
 
 //add to firebase leaderboard
 var playerToLeaderboard = function () {
@@ -149,14 +163,16 @@ var playerToLeaderboard = function () {
 }
 
 //pull leaderboard for display at the end of game
-database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
-    snapshot.forEach(function (child) {
-        var name = child.val().Name;
-        var score = child.val().Score;
-        var category = child.val().Category;
-        $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
+var getLeaderboard = function () {
+    database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
+        snapshot.forEach(function (child) {
+            var name = child.val().Name;
+            var score = child.val().Score;
+            var category = child.val().Category;
+            $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
+        })
     })
-})
+}
 
 $('.modal').modal({
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
