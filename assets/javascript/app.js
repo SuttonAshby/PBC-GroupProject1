@@ -44,9 +44,10 @@ $(document).ready(function () {
         "Animals",
         "Vehicles",
     ];
+
     //open trivia api call
-    var categorie = $(this).attr("data-name");
-    var difficulty = $(this).attr("data-name");
+    var categorie = "9";
+    var difficulty = "hard";
 
     var getQuestions = function () {
 
@@ -74,23 +75,46 @@ var queryURL = "https://opentdb.com/api.php?amount=1&" +
 
     });
 
-$(".location").on("click", function () {
-    var city = $(this).html() + ".json";
-    console.log(city);
+var database = firebase.database();
 
-    var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        var results = response.current_observation;
-        var weather = results.weather;
-        console.log(weather);
-
-
+//add to leaderboard
+database.once("value", function (snapshot) {
+    var userName;//submit form name
+    var userScore; // time remaining
+    database.ref().push({
+        Name: userName,
+        Score: userScore
     })
+})
+
+var config = {
+    apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
+    databaseURL: "https://pbc-groupproject1.firebaseio.com/"
+};
+
+firebase.initializeApp(config);
+
+var database = firebase.database()
+
+//add to leaderboard
+database.once("value", function (snapshot) {
+    var userName;//submit form name
+    var userScore; // time remaining
+    database.ref().push({
+        Name: userName,
+        Score: userScore
+    })
+})
+
+
+//pull leaderboard
+database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
+    snapshot.forEach(function (child) {
+        var name = child.val().Name
+        var score = child.val().Score
+        $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><tr>")
+    })
+})
 })
 
 
@@ -139,3 +163,190 @@ $('.modal').modal({
 }
 );
 
+/* countries object with nested specific country
+ sample country object
+ var countries = {
+    country object name: {
+        city: "Name of city for visuals and weather api call"
+        country: "Name of city for visuals and weather api call"
+        questionType: "question difficulty of this country object"
+        easyLoc: "the easy destination from this country object"
+        easyTime: time in hours as a number to easyLoc
+        hardLoc: "the hard destination from this country object"
+        hardTime: time in hours as a number to hardLoc
+    }
+}
+*/
+var countries = {
+    usa: {
+        city: "New York City",
+        country: "United States of America",
+        questionType: "easy",
+        easyLoc: "canada",
+        easyTime: 4,
+        hardLoc: "mexico",
+        hardTime: 8
+    },
+    mexico: {
+        city: "Mexico City",
+        country: "Mexico",
+        questionType: "hard",
+        easyLoc: "venezuela",
+        easyTime: 4,
+        hardLoc: "argentina",
+        hardTime: 8
+    },
+    canada: {
+        city: "Montreal"
+		country: "Canada",
+        questionType: "easy",
+        easyLoc: "venezuela",
+        easyTime: 4,
+        hardLoc: "norway",
+        hardTime: 8
+    },
+    argentina: {
+        city: "Buenos Aires",
+        country: "Argentina",
+        questionType: "hard",
+        easyLoc: "morocco",
+        easyTime: 4,
+        hardLoc: "southAfrica",
+        hardTime: 8
+    },
+    venezuela: {
+        city: "Caracas",
+        country: "Venezuela",
+        questionType: "easy",
+        easyLoc: "morocco",
+        easyTime: 4,
+        hardLoc: "southAfrica",
+        hardTime: 8
+    },
+    norway: {
+        city: "Oslo"
+		country: "Norway",
+        questionType: "hard",
+        easyLoc: "morocco",
+        easyTime: 4,
+        hardLoc: "southAfrica",
+        hardTime: 8
+    },
+    southAfrica: {
+        city: "Cape Town",
+        country: "South Africa",
+        questionType: "hard",
+        easyLoc: "yemen",
+        easyTime: 4,
+        hardLoc: "djibouti",
+        hardTime: 8
+    },
+    morocco: {
+        city: "Casablanca",
+        country: "Morocco",
+        questionType: "easy",
+        easyLoc: "yemen",
+        easyTime: 4,
+        hardLoc: "malta",
+        hardTime: 8
+    },
+    djibouti: {
+        city: "Djibouti",
+        country: "Djibouti",
+        questionType: "hard",
+        easyLoc: "turkmenistan",
+        easyTime: 4,
+        hardLoc: "india",
+        hardTime: 8
+    },
+    yemen: {
+        city: "Sana'a",
+        country: "Yemen",
+        questionType: "easy",
+        easyLoc: "turkmenistan",
+        easyTime: 4,
+        hardLoc: "india",
+        hardTime: 8
+    },
+    malta: {
+        city: "Valletta",
+        country: "Malta",
+        questionType: "hard",
+        easyLoc: "turkmenistan",
+        easyTime: 4,
+        hardLoc: "india",
+        hardTime: 8
+    },
+    india: {
+        city: "New Delhi",
+        country: "India",
+        questionType: "hard",
+        easyLoc: "china",
+        easyTime: 4,
+        hardLoc: "indonesia",
+        hardTime: 8
+    },
+    turkmenistan: {
+        city: "Ashgabat",
+        country: "Turkmenistan",
+        questionType: "easy",
+        easyLoc: "china",
+        easyTime: 4,
+        hardLoc: "Russia",
+        hardTime: 8
+    },
+    indonesia: {
+        city: "Jakarta",
+        country: "Indonesia",
+        questionType: "hard",
+        easyLoc: "japan",
+        easyTime: 4,
+        hardLoc: "papuaNewGuinea",
+        hardTime: 8
+    },
+    china: {
+        city: "Beijing",
+        country: "China",
+        questionType: "easy",
+        easyLoc: "japan",
+        easyTime: 4,
+        hardLoc: "papuaNewGuinea",
+        hardTime: 8
+    },
+    russia: {
+        city: "Moscow",
+        country: "Russia",
+        questionType: "hard",
+        easyLoc: "japan",
+        easyTime: 4,
+        hardLoc: "papuaNewGuinea",
+        hardTime: 8
+    },
+    papuaNewGuinea: {
+        city: "Port Moresby",
+        country: "Papua New Guinea",
+        questionType: "hard",
+        easyLoc: "Australia",
+        easyTime: 4,
+        hardLoc: "Australia",
+        hardTime: 8
+    },
+    japan: {
+        city: "Tokyo",
+        country: "Japan",
+        questionType: "easy",
+        easyLoc: "Australia",
+        easyTime: 4,
+        hardLoc: "Australia",
+        hardTime: 8
+    },
+    australia: {
+        city: "Canberra",
+        country: "Australia",
+        questionType: "easy",
+        easyLoc: "Australia",
+        easyTime: 4,
+        hardLoc: "Australia",
+        hardTime: 8
+    }
+}
