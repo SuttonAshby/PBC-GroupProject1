@@ -185,7 +185,10 @@ $(document).ready(function () {
       easyTime: 4,
       hardLoc: "australia",
       hardTime: 8
-    }
+    },
+    key: function (n) {
+            return this[Object.keys(this)[n]];
+        }
   };
 
   // question topics
@@ -315,14 +318,47 @@ var endgame = function () {
   getLeaderboard() //get leaderboard for display
   //restart game button
 }
+    var currentLocation = countries.key(0);
+    var displayLocation = currentLocation.city + ", " + currentLocation.country;
+    $("#current").text(displayLocation);
+
+    function cardDestination() {
+        var easyOption = currentLocation.easyLoc;
+        var hardOption = currentLocation.hardLoc;
+
+        var card1 = countries[easyOption].city + ", " + countries[easyOption].country;
+        var card2 = countries[hardOption].city + ", " + countries[hardOption].country;
+
+        $(".card1").text(card1);
+        $(".card2").text(card2);
+
+        $(document).on("click", ".card", function () {
+            if ($(this).attr("id", "card1")) {
+                currentLocation = countries[easyOption];
+                displayLocation = card1;
+            } else {
+                currentLocaton = countries[hardOption];
+                displayLocation = card2;
+            }
+        });
+    };
+
+    $(document).on("click", ".correct", function () {
+        $("#current").text(displayLocation);
+    })
+
+    $(document).on("click", ".incorrect", function () {
+        // Show other question
+    })
+
+    cardDestination();
+});
 
   var config = {
     apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
     databaseURL: "https://pbc-groupproject1.firebaseio.com/"
   };
-
   firebase.initializeApp(config);
-
   var database = firebase.database()//on click to submit player name
   var playerChoices = function () {
       if (userName === undefined) {
