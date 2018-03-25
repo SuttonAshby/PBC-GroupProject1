@@ -187,8 +187,8 @@ $(document).ready(function () {
       hardTime: 8
     },
     key: function (n) {
-            return this[Object.keys(this)[n]];
-        }
+      return this[Object.keys(this)[n]];
+    }
   };
 
   // question topics
@@ -225,7 +225,7 @@ $(document).ready(function () {
 
   // random locations array to be sent to if there is bad weather
   var randLocs = ["argentina", "venezuela", "norway", "southAfrica", "morocco", "djibouti",
-      "yemen", "malta", "india", "turkmenistan", "indonesia", "china", "russia"]
+    "yemen", "malta", "india", "turkmenistan", "indonesia", "china", "russia"]
 
   //open trivia api call
   var categorie = "10";
@@ -233,8 +233,14 @@ $(document).ready(function () {
   var questionButtons = [];
   var qResponse
 
-  var getQuestions = function () {
+  var easyOption
+  var hardOption
+  var card1
+  var card2
+
+  var getQuestion = function () {
     var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=" + difficulty + "&type=multiple";
+    console.log(queryURL);
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -243,7 +249,7 @@ $(document).ready(function () {
     });
   };
 
-  getQuestions();
+  getQuestion();
 
   //question functions
   function makeQuestionButtons() {
@@ -260,27 +266,32 @@ $(document).ready(function () {
   };
 
   function renderQuestionButtons() {
-    $(".card").remove();
-    $("#gameArea").append(questionText, "<br>", questionButtons[0], "<br>", questionButtons[1], "<br>", questionButtons[2], "<br>", questionButtons[3]);
+    /* $(".card").remove(); */
+    $(".cardQuestion").replaceWith(questionText, "<br>", questionButtons[0], "<br>", questionButtons[1], "<br>", questionButtons[2], "<br>", questionButtons[3]);
   };
 
-  $(document).on("click", ".correct", function () {
-    goodJob();
-  });
-
-  $(document).on("click", ".incorrect", function () {
-    badJob();
-  });
-
-  $(document).on("click", ".card-reveal", function () {
+  $(document).on("click", "#card1", function () {
     makeQuestionButtons();
     renderQuestionButtons();
   });
 
-  // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
+  $(document).on("click", "#card2", function () {
+    makeQuestionButtons();
+    renderQuestionButtons();
+  });
 
-  $(".correct").on("click", function () {
-    var city = $("CITY NAME").val() + ".json";
+  function NewCards() {
+    $("#questionText").remove();
+    $(".option").remove();
+    $("#card1").replaceWith(card1);
+    console.log("card1 " + card1);
+    $("#card2").replaceWith(card2);
+    console.log("card2 " + card2);
+  }
+
+  // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
+  function getWeather() {
+    var city = currentLocation.country + "/" + currentLocation.city + ".json";
     console.log(city);
 
     var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
@@ -293,7 +304,14 @@ $(document).ready(function () {
       var results = response.current_observation;
       var weather = results.weather;
       console.log(weather);
+      $("#weather").text("Current weather: " + weather);
+    });
+  }
 
+  $(document).on("click", ".correct", function () {
+    var city = currentLocation.country + "/" + currentLocation.city + ".json";
+    console.log(city);
+    getWeather();
       // Changing TOTALTIME based on current weather condition of user travel location
       if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds")) {
         TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
@@ -302,56 +320,57 @@ $(document).ready(function () {
       } else {
         TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
       }
-    })
   })
 
   //returns a random location from the array to be sent to due to bad weather
-var goRand = function () {
-  return randLocs[Math.floor(Math.random() * randLocs.length)]
-}
+  var goRand = function () {
+    return randLocs[Math.floor(Math.random() * randLocs.length)]
+  }
 
-//when reaching final destination
-var endgame = function () {
-  playerToLeaderboard() //push player info to leaderboard
-  getLeaderboard() //get leaderboard for display
-  //restart game button
-}
-    var currentLocation = countries.key(0);
-    var displayLocation = currentLocation.city + ", " + currentLocation.country;
+  //when reaching final destination
+  var endgame = function () {
+    playerToLeaderboard() //push player info to leaderboard
+    getLeaderboard() //get leaderboard for display
+    //restart game button
+  }
+  var currentLocation = countries.key(0);
+  var displayLocation = currentLocation.city + ", " + currentLocation.country;
+  $("#current").text(displayLocation);
+
+  function cardDestination() {
+    easyOption = currentLocation.easyLoc;
+    hardOption = currentLocation.hardLoc;
+
+    card1 = countries[easyOption].city + ", " + countries[easyOption].country;
+    card2 = countries[hardOption].city + ", " + countries[hardOption].country;
+
+    $(".card1").text(card1);
+    $(".card2").text(card2);
+
+    $(document).on("click", ".card", function () {
+      if ($(this).attr("id", "card1")) {
+        currentLocation = countries[easyOption];
+        displayLocation = card1;
+      } else {
+        currentLocation = countries[hardOption];
+        displayLocation = card2;
+      }
+    });
+  };
+
+  $(document).on("click", ".correct", function () {
     $("#current").text(displayLocation);
-
-    function cardDestination() {
-        var easyOption = currentLocation.easyLoc;
-        var hardOption = currentLocation.hardLoc;
-
-        var card1 = countries[easyOption].city + ", " + countries[easyOption].country;
-        var card2 = countries[hardOption].city + ", " + countries[hardOption].country;
-
-        $(".card1").text(card1);
-        $(".card2").text(card2);
-
-        $(document).on("click", ".card", function () {
-            if ($(this).attr("id", "card1")) {
-                currentLocation = countries[easyOption];
-                displayLocation = card1;
-            } else {
-                currentLocaton = countries[hardOption];
-                displayLocation = card2;
-            }
-        });
-    };
-
-    $(document).on("click", ".correct", function () {
-        $("#current").text(displayLocation);
-    })
-})
-
-    $(document).on("click", ".incorrect", function () {
-        // Show other question
-    })
-
     cardDestination();
-});
+    NewCards();
+    getQuestion();
+  })
+
+  $(document).on("click", ".incorrect", function () {
+    // Show other question
+  })
+
+  cardDestination();
+  getWeather();
 
   var config = {
     apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
@@ -360,36 +379,36 @@ var endgame = function () {
   firebase.initializeApp(config);
   var database = firebase.database()//on click to submit player name
   var playerChoices = function () {
-      if (userName === undefined) {
-          userName = $(nameInput).val().trim();
-          userName = JSON.stringify(userName);
-      }
-      categoryChoice = $(categoryInput)
+    if (userName === undefined) {
+      userName = $(nameInput).val().trim();
+      userName = JSON.stringify(userName);
+    }
+    categoryChoice = $(categoryInput)
   }
   $("#submit").on("click", playerChoices)
-  
+
   //add to firebase leaderboard
   var playerToLeaderboard = function () {
-      // time it took to finish
-      database.ref().child(userName).set({
-          Name: userName,
-          Score: userScore,
-          Category: categoryChoice
-      })
+    // time it took to finish
+    database.ref().child(userName).set({
+      Name: userName,
+      Score: userScore,
+      Category: categoryChoice
+    })
   }
-  
+
   //pull leaderboard for display at the end of game
   var getLeaderboard = function () {
-  //add to leaderboard
-  database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
-    snapshot.forEach(function (child) {
-      var name = child.val().Name;
-      var score = child.val().Score;
-      var category = child.val().Category;
-      $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
-  })
- });
-};
+    //add to leaderboard
+    database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
+      snapshot.forEach(function (child) {
+        var name = child.val().Name;
+        var score = child.val().Score;
+        var category = child.val().Category;
+        $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
+      })
+    });
+  };
 
   $('.modal').modal({
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
