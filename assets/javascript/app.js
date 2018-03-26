@@ -229,60 +229,83 @@ $(document).ready(function () {
 
   //open trivia api call
   var categorie = "10";
-  var difficulty = "hard";
-  var questionButtons = [];
-  var qResponse
+  var easyQuestionButtons = [];
+  var hardQuestionButtons = [];
+  var easyResponse
+  var hardResponse
 
   var easyOption
   var hardOption
   var card1
   var card2
 
-  var getQuestion = function () {
-    var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=" + difficulty + "&type=multiple";
+  function getEasyQuestion() {
+    var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=easy&type=multiple";
     console.log(queryURL);
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function (response) {
-      qResponse = response
+      easyResponse = response
+      makeEasyQuestionButtons();
+      renderEasyQuestionButtons();
     });
   };
 
-  getQuestion();
+  //question functions
+  function makeEasyQuestionButtons() {
+    easyQuestionText = $("<h4 id='easyQuestionText'>").html(easyResponse.results[0].question);
+    easyOption1 = $("<button id='easyOption1'>").html(easyResponse.results[0].correct_answer).addClass("option correct");
+    easyQuestionButtons[0] = easyOption1;
+    easyOption2 = $("<button id='easyOption2'>").html(easyResponse.results[0].incorrect_answers[0]).addClass("option incorrect");
+    easyQuestionButtons[1] = easyOption2;
+    easyOption3 = $("<button id='easyOption3'>").html(easyResponse.results[0].incorrect_answers[1]).addClass("option incorrect");
+    easyQuestionButtons[2] = easyOption3;
+    easyOption4 = $("<button id='easyOption4'>").html(easyResponse.results[0].incorrect_answers[2]).addClass("option incorrect");
+    easyQuestionButtons[3] = easyOption4;
+    easyQuestionButtons.sort(function (a, b) { return 0.5 - Math.random() });
+  };
+
+  function renderEasyQuestionButtons() {
+    $("#cardEasyQuestion").replaceWith(easyQuestionText, "<br>", easyQuestionButtons[0], "<br>", easyQuestionButtons[1], "<br>", easyQuestionButtons[2], "<br>", easyQuestionButtons[3]);
+  };
+
+  function getHardQuestion() {
+    var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=hard&type=multiple";
+    console.log(queryURL);
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function (response) {
+      hardResponse = response
+      makeHardQuestionButtons();
+      renderHardQuestionButtons();
+    });
+  };
 
   //question functions
-  function makeQuestionButtons() {
-    questionText = $("<h4 id='questionText'>").html(qResponse.results[0].question);
-    option1 = $("<button id='option1'>").html(qResponse.results[0].correct_answer).addClass("option correct");
-    questionButtons[0] = option1;
-    option2 = $("<button id='option2'>").html(qResponse.results[0].incorrect_answers[0]).addClass("option incorrect");
-    questionButtons[1] = option2;
-    option3 = $("<button id='option3'>").html(qResponse.results[0].incorrect_answers[1]).addClass("option incorrect");
-    questionButtons[2] = option3;
-    option4 = $("<button id='option4'>").html(qResponse.results[0].incorrect_answers[2]).addClass("option incorrect");
-    questionButtons[3] = option4;
-    questionButtons.sort(function (a, b) { return 0.5 - Math.random() });
+  function makeHardQuestionButtons() {
+    hardQuestionText = $("<h4 id='hardQuestionText'>").html(hardResponse.results[0].question);
+    hardOption1 = $("<button id='hardOption1'>").html(hardResponse.results[0].correct_answer).addClass("option correct");
+    hardQuestionButtons[0] = hardOption1;
+    hardOption2 = $("<button id='hardOption2'>").html(hardResponse.results[0].incorrect_answers[0]).addClass("option incorrect");
+    hardQuestionButtons[1] = hardOption2;
+    hardOption3 = $("<button id='hardOption3'>").html(hardResponse.results[0].incorrect_answers[1]).addClass("option incorrect");
+    hardQuestionButtons[2] = hardOption3;
+    hardOption4 = $("<button id='hardOption4'>").html(hardResponse.results[0].incorrect_answers[2]).addClass("option incorrect");
+    hardQuestionButtons[3] = hardOption4;
+    hardQuestionButtons.sort(function (a, b) { return 0.5 - Math.random() });
   };
 
-  function renderQuestionButtons() {
-    /* $(".card").remove(); */
-    $(".cardQuestion").replaceWith(questionText, "<br>", questionButtons[0], "<br>", questionButtons[1], "<br>", questionButtons[2], "<br>", questionButtons[3]);
+  function renderHardQuestionButtons() {
+    $("#cardHardQuestion").replaceWith(hardQuestionText, "<br>", hardQuestionButtons[0], "<br>", hardQuestionButtons[1], "<br>", hardQuestionButtons[2], "<br>", hardQuestionButtons[3]);
   };
-
-  $(document).on("click", "#card1", function () {
-    makeQuestionButtons();
-    renderQuestionButtons();
-  });
-
-  $(document).on("click", "#card2", function () {
-    makeQuestionButtons();
-    renderQuestionButtons();
-  });
 
   function NewCards() {
     $("#questionText").remove();
     $(".option").remove();
+    cardEasyDestination();
+    cardHardDestination();
     $("#card1").replaceWith(card1);
     console.log("card1 " + card1);
     $("#card2").replaceWith(card2);
@@ -312,14 +335,14 @@ $(document).ready(function () {
     var city = currentLocation.country + "/" + currentLocation.city + ".json";
     console.log(city);
     getWeather();
-      // Changing TOTALTIME based on current weather condition of user travel location
-      if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds")) {
-        TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
-      } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
-        // Go to random location for really bad weather
-      } else {
-        TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
-      }
+    // Changing TOTALTIME based on current weather condition of user travel location
+    if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds")) {
+      TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
+    } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
+      // Go to random location for really bad weather
+    } else {
+      TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
+    }
   })
 
   //returns a random location from the array to be sent to due to bad weather
@@ -337,39 +360,43 @@ $(document).ready(function () {
   var displayLocation = currentLocation.city + ", " + currentLocation.country;
   $("#current").text(displayLocation);
 
-  function cardDestination() {
+  function cardEasyDestination() {
     easyOption = currentLocation.easyLoc;
-    hardOption = currentLocation.hardLoc;
-
     card1 = countries[easyOption].city + ", " + countries[easyOption].country;
-    card2 = countries[hardOption].city + ", " + countries[hardOption].country;
-
     $(".card1").text(card1);
-    $(".card2").text(card2);
-
-    $(document).on("click", ".card", function () {
-      if ($(this).attr("id", "card1")) {
-        currentLocation = countries[easyOption];
-        displayLocation = card1;
-      } else {
-        currentLocation = countries[hardOption];
-        displayLocation = card2;
-      }
-    });
+    getEasyQuestion();
   };
+
+  function cardHardDestination() {
+    hardOption = currentLocation.hardLoc;
+    card2 = countries[hardOption].city + ", " + countries[hardOption].country;
+    $(".card2").text(card2);
+    getHardQuestion();
+  };
+
+  $(document).on("click", ".card", function () {
+    if ($(this).attr("id", "card1")) {
+      currentLocation = countries[easyOption];
+      displayLocation = card1;
+    } else {
+      currentLocation = countries[hardOption];
+      displayLocation = card2;
+    }
+  });
 
   $(document).on("click", ".correct", function () {
     $("#current").text(displayLocation);
-    cardDestination();
+    cardEasyDestination();
+    cardHardDestination();
     NewCards();
-    getQuestion();
   })
 
   $(document).on("click", ".incorrect", function () {
     // Show other question
   })
 
-  cardDestination();
+  cardEasyDestination();
+  cardHardDestination();
   getWeather();
 
   var config = {
