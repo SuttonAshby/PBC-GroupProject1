@@ -378,9 +378,11 @@ $(document).ready(function () {
     if ($(this).attr("id", "card1")) {
       currentLocation = countries[easyOption];
       displayLocation = card1;
+      console.log("going to the easy place");
     } else {
       currentLocation = countries[hardOption];
       displayLocation = card2;
+      console.log("going to the hard place");
     }
   });
 
