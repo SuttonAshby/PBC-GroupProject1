@@ -345,64 +345,62 @@ $(document).ready(function () {
     $(".correct").on("click", function () {
         $("#current").text(displayLocation);
     })
+})
 
-    $(".incorrect").on("click", function () {
-        // Show other question
+$(".incorrect").on("click", function () {
+    // Show other question
+})
+
+cardDestination();
+
+var config = {
+    apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
+    databaseURL: "https://pbc-groupproject1.firebaseio.com/"
+};
+firebase.initializeApp(config);
+var database = firebase.database()//on click to submit player name
+var playerChoices = function () {
+    if (userName === undefined) {
+        userName = $(nameInput).val().trim();
+        userName = JSON.stringify(userName);
+    }
+    categoryChoice = $(categoryInput)
+}
+$("#submit").on("click", playerChoices)
+
+//add to firebase leaderboard
+var playerToLeaderboard = function () {
+    // time it took to finish
+    database.ref().child(userName).set({
+        Name: userName,
+        Score: userScore,
+        Category: categoryChoice
     })
+}
 
-    cardDestination();
-
-
-    var config = {
-        apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
-        databaseURL: "https://pbc-groupproject1.firebaseio.com/"
-    };
-
-    firebase.initializeApp(config);
-    var database = firebase.database()//on click to submit player name
-    var playerChoices = function () {
-        if (userName === undefined) {
-            userName = $(nameInput).val().trim();
-            userName = JSON.stringify(userName);
-        }
-        categoryChoice = $(categoryInput)
-    }
-    $("#submit").on("click", playerChoices)
-
-    //add to firebase leaderboard
-    var playerToLeaderboard = function () {
-        // time it took to finish
-        database.ref().child(userName).set({
-            Name: userName,
-            Score: userScore,
-            Category: categoryChoice
+//pull leaderboard for display at the end of game
+var getLeaderboard = function () {
+    //add to leaderboard
+    database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
+        snapshot.forEach(function (child) {
+            var name = child.val().Name;
+            var score = child.val().Score;
+            var category = child.val().Category;
+            $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
         })
-    }
-
-    //pull leaderboard for display at the end of game
-    var getLeaderboard = function () {
-        //add to leaderboard
-        database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
-            snapshot.forEach(function (child) {
-                var name = child.val().Name;
-                var score = child.val().Score;
-                var category = child.val().Category;
-                $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
-            })
-        });
-    };
-
-    $('.modal').modal({
-        dismissible: true, // Modal can be dismissed by clicking outside of the modal
-        opacity: .5, // Opacity of modal background
-        inDuration: 300, // Transition in duration
-        outDuration: 200, // Transition out duration
-        startingTop: '4%', // Starting top style attribute
-        endingTop: '10%', // Ending top style attribute
-        //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-        //console.log(modal, trigger);
-        // },
-        //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //complete: function() { alert('Closed'); }  
     });
+};
+
+$('.modal').modal({
+    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+    opacity: .5, // Opacity of modal background
+    inDuration: 300, // Transition in duration
+    outDuration: 200, // Transition out duration
+    startingTop: '4%', // Starting top style attribute
+    endingTop: '10%', // Ending top style attribute
+    //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+    //console.log(modal, trigger);
+    // },
+    //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //complete: function() { alert('Closed'); }  
 });
