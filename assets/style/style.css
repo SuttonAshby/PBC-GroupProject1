@@ -21,3 +21,9 @@
 .locationChoice2 {
     background: darksalmon;
 }
+
+img {
+    height: 168px !important;
+    width: 168px !important;
+
+}
