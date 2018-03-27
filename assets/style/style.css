@@ -22,8 +22,17 @@
     background: darksalmon;
 }
 
-img {
-    height: 168px !important;
-    width: 168px !important;
+body .flip-clock-wrapper ul li a div div.inn, body .flip-clock-small-wrapper ul li a div div.inn { 
+    color: #CCCCCC; 
+    background-color: #333333; 
+} 
+body .flip-clock-dot, body .flip-clock-small-wrapper .flip-clock-dot { 
+    background: #323434; 
+} 
+body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper .flip-clock-meridium a { 
+    color: #323434; 
+}
 
+.clock-builder-output {
+    min-width: 318px;
 }
