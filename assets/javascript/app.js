@@ -22,7 +22,8 @@ $(document).ready(function () {
       easyLoc: "canada",
       easyTime: 4,
       hardLoc: "mexico",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/usa.jpg"
     },
     mexico: {
       city: "Mexico City",
@@ -31,7 +32,8 @@ $(document).ready(function () {
       easyLoc: "venezuela",
       easyTime: 4,
       hardLoc: "argentina",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/mexico.jpg"
     },
     canada: {
       city: "Montreal",
@@ -40,7 +42,8 @@ $(document).ready(function () {
       easyLoc: "venezuela",
       easyTime: 4,
       hardLoc: "norway",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/canada.jpg"
     },
     argentina: {
       city: "Buenos Aires",
@@ -49,7 +52,8 @@ $(document).ready(function () {
       easyLoc: "morocco",
       easyTime: 4,
       hardLoc: "southAfrica",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/argentia.jpg"
     },
     venezuela: {
       city: "Caracas",
@@ -58,7 +62,8 @@ $(document).ready(function () {
       easyLoc: "morocco",
       easyTime: 4,
       hardLoc: "southAfrica",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/venezuela.jpg"
     },
     norway: {
       city: "Oslo",
@@ -67,7 +72,8 @@ $(document).ready(function () {
       easyLoc: "morocco",
       easyTime: 4,
       hardLoc: "southAfrica",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/norway.jpg"
     },
     southAfrica: {
       city: "Cape Town",
@@ -76,7 +82,8 @@ $(document).ready(function () {
       easyLoc: "yemen",
       easyTime: 4,
       hardLoc: "djibouti",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/southAfrica.jpg"
     },
     morocco: {
       city: "Casablanca",
@@ -85,7 +92,8 @@ $(document).ready(function () {
       easyLoc: "yemen",
       easyTime: 4,
       hardLoc: "malta",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/morocco.jpg"
     },
     djibouti: {
       city: "Djibouti",
@@ -94,7 +102,8 @@ $(document).ready(function () {
       easyLoc: "turkmenistan",
       easyTime: 4,
       hardLoc: "india",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/djibouti.jpg"
     },
     yemen: {
       city: "Sana'a",
@@ -103,7 +112,8 @@ $(document).ready(function () {
       easyLoc: "turkmenistan",
       easyTime: 4,
       hardLoc: "india",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/yemen.jpg"
     },
     malta: {
       city: "Valletta",
@@ -112,7 +122,8 @@ $(document).ready(function () {
       easyLoc: "turkmenistan",
       easyTime: 4,
       hardLoc: "india",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/malta.jpg"
     },
     india: {
       city: "New Delhi",
@@ -121,7 +132,8 @@ $(document).ready(function () {
       easyLoc: "china",
       easyTime: 4,
       hardLoc: "indonesia",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/india.jpg"
     },
     turkmenistan: {
       city: "Ashgabat",
@@ -130,7 +142,8 @@ $(document).ready(function () {
       easyLoc: "china",
       easyTime: 4,
       hardLoc: "Russia",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/turkmenistan.jpg"
     },
     indonesia: {
       city: "Jakarta",
@@ -139,7 +152,8 @@ $(document).ready(function () {
       easyLoc: "japan",
       easyTime: 4,
       hardLoc: "papuaNewGuinea",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/indonesia.jpg"
     },
     china: {
       city: "Beijing",
@@ -148,7 +162,8 @@ $(document).ready(function () {
       easyLoc: "japan",
       easyTime: 4,
       hardLoc: "papuaNewGuinea",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/china.jpg"
     },
     russia: {
       city: "Moscow",
@@ -157,7 +172,8 @@ $(document).ready(function () {
       easyLoc: "japan",
       easyTime: 4,
       hardLoc: "papuaNewGuinea",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/russia.jpg"
     },
     papuaNewGuinea: {
       city: "Port Moresby",
@@ -166,7 +182,8 @@ $(document).ready(function () {
       easyLoc: "australia",
       easyTime: 4,
       hardLoc: "australia",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/papuaNewGuinea.jpg"
     },
     japan: {
       city: "Tokyo",
@@ -175,7 +192,8 @@ $(document).ready(function () {
       easyLoc: "australia",
       easyTime: 4,
       hardLoc: "australia",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/japan.jpg"
     },
     australia: {
       city: "Canberra",
@@ -184,7 +202,8 @@ $(document).ready(function () {
       easyLoc: "australia",
       easyTime: 4,
       hardLoc: "australia",
-      hardTime: 8
+      hardTime: 8,
+      imgLink: "assets/images/australia.jpg"
     },
     key: function (n) {
       return this[Object.keys(this)[n]];
@@ -331,7 +350,7 @@ $(document).ready(function () {
     });
   }
 
-  $(document).on("click", ".correct", function () {
+  $( document).on("click", ".correct", function () {
     var city = currentLocation.country + "/" + currentLocation.city + ".json";
     console.log(city);
     getWeather();
