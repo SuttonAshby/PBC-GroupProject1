@@ -22,7 +22,8 @@ $(document).ready(function () {
             easyLoc: "canada",
             easyTime: 4,
             hardLoc: "mexico",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/usa.jpg"
         },
         mexico: {
             city: "Mexico City",
@@ -31,7 +32,8 @@ $(document).ready(function () {
             easyLoc: "venezuela",
             easyTime: 4,
             hardLoc: "argentina",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/mexico.jpg"
         },
         canada: {
             city: "Montreal",
@@ -40,7 +42,8 @@ $(document).ready(function () {
             easyLoc: "venezuela",
             easyTime: 4,
             hardLoc: "norway",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/canada.jpg"
         },
         argentina: {
             city: "Buenos Aires",
@@ -49,7 +52,8 @@ $(document).ready(function () {
             easyLoc: "morocco",
             easyTime: 4,
             hardLoc: "southAfrica",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/argentia.jpg"
         },
         venezuela: {
             city: "Caracas",
@@ -58,7 +62,8 @@ $(document).ready(function () {
             easyLoc: "morocco",
             easyTime: 4,
             hardLoc: "southAfrica",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/venezuela.jpg"
         },
         norway: {
             city: "Oslo",
@@ -67,7 +72,8 @@ $(document).ready(function () {
             easyLoc: "morocco",
             easyTime: 4,
             hardLoc: "southAfrica",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/norway.jpg"
         },
         southAfrica: {
             city: "Cape Town",
@@ -76,7 +82,8 @@ $(document).ready(function () {
             easyLoc: "yemen",
             easyTime: 4,
             hardLoc: "djibouti",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/southAfrica.jpg"
         },
         morocco: {
             city: "Casablanca",
@@ -85,7 +92,8 @@ $(document).ready(function () {
             easyLoc: "yemen",
             easyTime: 4,
             hardLoc: "malta",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/morocco.jpg"
         },
         djibouti: {
             city: "Djibouti",
@@ -94,7 +102,8 @@ $(document).ready(function () {
             easyLoc: "turkmenistan",
             easyTime: 4,
             hardLoc: "india",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/djibouti.jpg"
         },
         yemen: {
             city: "Sana'a",
@@ -103,7 +112,8 @@ $(document).ready(function () {
             easyLoc: "turkmenistan",
             easyTime: 4,
             hardLoc: "india",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/yemen.jpg"
         },
         malta: {
             city: "Valletta",
@@ -112,7 +122,8 @@ $(document).ready(function () {
             easyLoc: "turkmenistan",
             easyTime: 4,
             hardLoc: "india",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/malta.jpg"
         },
         india: {
             city: "New Delhi",
@@ -121,7 +132,8 @@ $(document).ready(function () {
             easyLoc: "china",
             easyTime: 4,
             hardLoc: "indonesia",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/india.jpg"
         },
         turkmenistan: {
             city: "Ashgabat",
@@ -130,7 +142,8 @@ $(document).ready(function () {
             easyLoc: "china",
             easyTime: 4,
             hardLoc: "Russia",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/turkmenistan.jpg"
         },
         indonesia: {
             city: "Jakarta",
@@ -139,7 +152,8 @@ $(document).ready(function () {
             easyLoc: "japan",
             easyTime: 4,
             hardLoc: "papuaNewGuinea",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/indonesia.jpg"
         },
         china: {
             city: "Beijing",
@@ -148,7 +162,8 @@ $(document).ready(function () {
             easyLoc: "japan",
             easyTime: 4,
             hardLoc: "papuaNewGuinea",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/china.jpg"
         },
         russia: {
             city: "Moscow",
@@ -157,7 +172,8 @@ $(document).ready(function () {
             easyLoc: "japan",
             easyTime: 4,
             hardLoc: "papuaNewGuinea",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/russia.jpg"
         },
         papuaNewGuinea: {
             city: "Port Moresby",
@@ -166,7 +182,8 @@ $(document).ready(function () {
             easyLoc: "australia",
             easyTime: 4,
             hardLoc: "australia",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/papuaNewGuinea.jpg"
         },
         japan: {
             city: "Tokyo",
@@ -175,7 +192,8 @@ $(document).ready(function () {
             easyLoc: "australia",
             easyTime: 4,
             hardLoc: "australia",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/japan.jpg"
         },
         australia: {
             city: "Canberra",
@@ -184,7 +202,8 @@ $(document).ready(function () {
             easyLoc: "australia",
             easyTime: 4,
             hardLoc: "australia",
-            hardTime: 8
+            hardTime: 8,
+            imgLink: "assets/images/australia.jpg"
         },
         key: function (n) {
             return this[Object.keys(this)[n]];
@@ -229,58 +248,92 @@ $(document).ready(function () {
 
     //open trivia api call
     var categorie = "10";
-    var difficulty = "hard";
-    var questionButtons = [];
-    var qResponse
+    var easyQuestionButtons = [];
+    var hardQuestionButtons = [];
+    var easyResponse
+    var hardResponse
 
-    var getQuestions = function () {
-        var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=" + difficulty + "&type=multiple";
+    var easyOption
+    var hardOption
+    var card1
+    var card2
+
+    function getEasyQuestion() {
+        var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=easy&type=multiple";
+        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            qResponse = response
+            easyResponse = response
+            makeEasyQuestionButtons();
+            renderEasyQuestionButtons();
         });
     };
 
-    getQuestions();
+    //question functions
+    function makeEasyQuestionButtons() {
+        easyQuestionText = $("<h4 id='easyQuestionText'>").html(easyResponse.results[0].question);
+        easyOption1 = $("<button id='easyOption1'>").html(easyResponse.results[0].correct_answer).addClass("option correct");
+        easyQuestionButtons[0] = easyOption1;
+        easyOption2 = $("<button id='easyOption2'>").html(easyResponse.results[0].incorrect_answers[0]).addClass("option incorrect");
+        easyQuestionButtons[1] = easyOption2;
+        easyOption3 = $("<button id='easyOption3'>").html(easyResponse.results[0].incorrect_answers[1]).addClass("option incorrect");
+        easyQuestionButtons[2] = easyOption3;
+        easyOption4 = $("<button id='easyOption4'>").html(easyResponse.results[0].incorrect_answers[2]).addClass("option incorrect");
+        easyQuestionButtons[3] = easyOption4;
+        easyQuestionButtons.sort(function (a, b) { return 0.5 - Math.random() });
+    };
+
+    function renderEasyQuestionButtons() {
+        $("#cardEasyQuestion").replaceWith(easyQuestionText, "<br>", easyQuestionButtons[0], "<br>", easyQuestionButtons[1], "<br>", easyQuestionButtons[2], "<br>", easyQuestionButtons[3]);
+    };
+
+    function getHardQuestion() {
+        var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=hard&type=multiple";
+        console.log(queryURL);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            hardResponse = response
+            makeHardQuestionButtons();
+            renderHardQuestionButtons();
+        });
+    };
 
     //question functions
-    function makeQuestionButtons() {
-        questionText = $("<h4 id='questionText'>").html(qResponse.results[0].question);
-        option1 = $("<button id='option1'>").html(qResponse.results[0].correct_answer).addClass("option correct");
-        questionButtons[0] = option1;
-        option2 = $("<button id='option2'>").html(qResponse.results[0].incorrect_answers[0]).addClass("option incorrect");
-        questionButtons[1] = option2;
-        option3 = $("<button id='option3'>").html(qResponse.results[0].incorrect_answers[1]).addClass("option incorrect");
-        questionButtons[2] = option3;
-        option4 = $("<button id='option4'>").html(qResponse.results[0].incorrect_answers[2]).addClass("option incorrect");
-        questionButtons[3] = option4;
-        questionButtons.sort(function (a, b) { return 0.5 - Math.random() });
+    function makeHardQuestionButtons() {
+        hardQuestionText = $("<h4 id='hardQuestionText'>").html(hardResponse.results[0].question);
+        hardOption1 = $("<button id='hardOption1'>").html(hardResponse.results[0].correct_answer).addClass("option correct");
+        hardQuestionButtons[0] = hardOption1;
+        hardOption2 = $("<button id='hardOption2'>").html(hardResponse.results[0].incorrect_answers[0]).addClass("option incorrect");
+        hardQuestionButtons[1] = hardOption2;
+        hardOption3 = $("<button id='hardOption3'>").html(hardResponse.results[0].incorrect_answers[1]).addClass("option incorrect");
+        hardQuestionButtons[2] = hardOption3;
+        hardOption4 = $("<button id='hardOption4'>").html(hardResponse.results[0].incorrect_answers[2]).addClass("option incorrect");
+        hardQuestionButtons[3] = hardOption4;
+        hardQuestionButtons.sort(function (a, b) { return 0.5 - Math.random() });
     };
 
-    function renderQuestionButtons() {
-        $(".card").remove();
-        $("#gameArea").append(questionText, "<br>", questionButtons[0], "<br>", questionButtons[1], "<br>", questionButtons[2], "<br>", questionButtons[3]);
+    function renderHardQuestionButtons() {
+        $("#cardHardQuestion").replaceWith(hardQuestionText, "<br>", hardQuestionButtons[0], "<br>", hardQuestionButtons[1], "<br>", hardQuestionButtons[2], "<br>", hardQuestionButtons[3]);
     };
 
-    $(document).on("click", ".correct", function () {
-        goodJob();
-    });
-
-    $(document).on("click", ".incorrect", function () {
-        badJob();
-    });
-
-    $(document).on("click", ".card-reveal", function () {
-        makeQuestionButtons();
-        renderQuestionButtons();
-    });
+    function NewCards() {
+        $("#questionText").remove();
+        $(".option").remove();
+        cardEasyDestination();
+        cardHardDestination();
+        $("#card1").replaceWith(card1);
+        console.log("card1 " + card1);
+        $("#card2").replaceWith(card2);
+        console.log("card2 " + card2);
+    }
 
     // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
-
-    $(".correct").on("click", function () {
-        var city = $("CITY NAME").val() + ".json";
+    function getWeather() {
+        var city = currentLocation.country + "/" + currentLocation.city + ".json";
         console.log(city);
 
         var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
@@ -293,16 +346,22 @@ $(document).ready(function () {
             var results = response.current_observation;
             var weather = results.weather;
             console.log(weather);
+            $("#weather").text("Current weather: " + weather);
+        });
+    }
 
-            // Changing TOTALTIME based on current weather condition of user travel location
-            if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds")) {
-                TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
-            } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
-                // Go to random location for really bad weather
-            } else {
-                TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
-            }
-        })
+    $(document).on("click", ".correct", function () {
+        var city = currentLocation.country + "/" + currentLocation.city + ".json";
+        console.log(city);
+        getWeather();
+        // Changing TOTALTIME based on current weather condition of user travel location
+        if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds")) {
+            TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
+        } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
+            // Go to random location for really bad weather
+        } else {
+            TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
+        }
     })
 
     //returns a random location from the array to be sent to due to bad weather
@@ -316,91 +375,100 @@ $(document).ready(function () {
         getLeaderboard() //get leaderboard for display
         //restart game button
     }
-
     var currentLocation = countries.key(0);
     var displayLocation = currentLocation.city + ", " + currentLocation.country;
     $("#current").text(displayLocation);
 
-    function cardDestination() {
-        var easyOption = currentLocation.easyLoc;
-        var hardOption = currentLocation.hardLoc;
-
-        var card1 = countries[easyOption].city + ", " + countries[easyOption].country;
-        var card2 = countries[hardOption].city + ", " + countries[hardOption].country;
-
+    function cardEasyDestination() {
+        easyOption = currentLocation.easyLoc;
+        card1 = countries[easyOption].city + ", " + countries[easyOption].country;
         $(".card1").text(card1);
-        $(".card2").text(card2);
-
-        $(".card").on("click", function () {
-            if ($(this).attr("id", "card1")) {
-                currentLocation = countries[easyOption];
-                displayLocation = card1;
-            } else {
-                currentLocaton = countries[hardOption];
-                displayLocation = card2;
-            }
-        });
+        getEasyQuestion();
     };
 
-    $(".correct").on("click", function () {
+    function cardHardDestination() {
+        hardOption = currentLocation.hardLoc;
+        card2 = countries[hardOption].city + ", " + countries[hardOption].country;
+        $(".card2").text(card2);
+        getHardQuestion();
+    };
+
+    $(document).on("click", ".card", function () {
+        if ($(this).attr("id", "card1")) {
+            currentLocation = countries[easyOption];
+            displayLocation = card1;
+        } else {
+            currentLocation = countries[hardOption];
+            displayLocation = card2;
+        }
+    });
+
+    $(document).on("click", ".correct", function () {
         $("#current").text(displayLocation);
+        cardEasyDestination();
+        cardHardDestination();
+        NewCards();
     })
-})
 
 $(".incorrect").on("click", function () {
     // Show other question
 })
 
-cardDestination();
+    cardEasyDestination();
+    cardHardDestination();
+    getWeather();
 
-var config = {
-    apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
-    databaseURL: "https://pbc-groupproject1.firebaseio.com/"
-};
-firebase.initializeApp(config);
-var database = firebase.database()//on click to submit player name
-var playerChoices = function () {
-    if (userName === undefined) {
-        userName = $(nameInput).val().trim();
-        userName = JSON.stringify(userName);
+    var config = {
+        apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
+        databaseURL: "https://pbc-groupproject1.firebaseio.com/"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database()
+    var playerChoices = function () { //on click to submit player name
+        if (userName === undefined) {
+            userName = $(nameInput).val().trim();
+            userName = JSON.stringify(userName);
+        }
+        categoryChoice = $(categoryInput)
     }
-    categoryChoice = $(categoryInput)
-}
-$("#submit").on("click", playerChoices)
 
-//add to firebase leaderboard
-var playerToLeaderboard = function () {
-    // time it took to finish
-    database.ref().child(userName).set({
-        Name: userName,
-        Score: userScore,
-        Category: categoryChoice
-    })
-}
+    $("#submit").on("click", playerChoices)
 
-//pull leaderboard for display at the end of game
-var getLeaderboard = function () {
-    //add to leaderboard
-    database.orderByChild("Score").limitToFirst(10).once("value", function (snapshot) {
-        snapshot.forEach(function (child) {
-            var name = child.val().Name;
-            var score = child.val().Score;
-            var category = child.val().Category;
-            $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
+    //add to firebase leaderboard
+    var playerToLeaderboard = function () {
+        database.ref().child(userName).set({
+            Name: userName,
+            Score: userScore,
+            sortBy: userScore * -1,
+            Category: categoryChoice
         })
-    });
-};
+    }
 
-$('.modal').modal({
-    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-    opacity: .5, // Opacity of modal background
-    inDuration: 300, // Transition in duration
-    outDuration: 200, // Transition out duration
-    startingTop: '4%', // Starting top style attribute
-    endingTop: '10%', // Ending top style attribute
-    //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-    //console.log(modal, trigger);
-    // },
-    //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //complete: function() { alert('Closed'); }  
+    //pull leaderboard for display at the end of game
+    var getLeaderboard = function () {
+        //add to leaderboard
+        database.orderByChild("sortBy").limitToFirst(10).once("value", function (snapshot) {
+            snapshot.forEach(function (child) {
+                var name = child.val().Name;
+                var score = child.val().Score;
+                var category = child.val().Category;
+                $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
+            })
+        });
+        $("#leaderboard").append("<hr><tr><td>" + userName + "</td><td>" + TOTALTIME + "</td><td>" + categoryChoice + "</td><tr>")
+    };
+
+    $('.modal').modal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        inDuration: 300, // Transition in duration
+        outDuration: 200, // Transition out duration
+        startingTop: '4%', // Starting top style attribute
+        endingTop: '10%', // Ending top style attribute
+        //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        //console.log(modal, trigger);
+        // },
+        //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //complete: function() { alert('Closed'); }  
+    });
 });
