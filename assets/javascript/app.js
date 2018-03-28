@@ -14,9 +14,8 @@ $(document).ready(function () {
         }
     }
     */
-   //initializes the dropdown in the start modal
-   $('select').formSelect();
-    
+      //initializes the dropdown in the start modal
+      $('select').formSelect();
     var countries = {
         usa: {
             city: "New York City",
@@ -216,29 +215,13 @@ $(document).ready(function () {
     // question topics
     var questionCategories = [
         "General Knowledge",
-        "Entertainment: Books",
-        "Entertainment: Film",
-        "Entertainment: Music",
-        "Entertainment: Musicals & Theater",
-        "Entertainment: Television",
-        "Entertainment: Video Games",
-        "Entertainment: Board Games",
-        "Entertainment: Japanese Anime & Manga",
-        "Entertainment: Cartoons & Animation",
-        "Entertainment: Comics",
         "Science & Nature",
-        "Science: Computers",
-        "Science: Mathematics",
-        "Science: Gadgets",
         "Mythology",
-        "Sports",
         "Geography",
         "History",
         "Politics",
         "Art",
-        "Celebrities",
         "Animals",
-        "Vehicles",
     ];
 
     var userName = undefined; //user name get from opening submit form. Make input required
@@ -260,6 +243,8 @@ $(document).ready(function () {
     var hardOption
     var card1
     var card2
+
+    var incorrect = 0;
 
     function getEasyQuestion() {
         var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=easy&type=multiple";
@@ -323,7 +308,7 @@ $(document).ready(function () {
         $("#cardHardQuestion").replaceWith(hardQuestionText, "<br>", hardQuestionButtons[0], "<br>", hardQuestionButtons[1], "<br>", hardQuestionButtons[2], "<br>", hardQuestionButtons[3]);
     };
 
-    function NewCards() {
+    function newCards() {
         $("#questionText").remove();
         $(".option").remove();
         cardEasyDestination();
@@ -349,7 +334,7 @@ $(document).ready(function () {
             var results = response.current_observation;
             var weather = results.weather;
             console.log(weather);
-            $("#weather").text("Current weather: " + weather);
+            $("#weather").text("Current Weather: " + weather);
         });
     }
 
@@ -369,7 +354,10 @@ $(document).ready(function () {
 
     //returns a random location from the array to be sent to due to bad weather
     var goRand = function () {
-        return randLocs[Math.floor(Math.random() * randLocs.length)]
+        currentLocation = randLocs[Math.floor(Math.random() * randLocs.length)];
+        displayLocation = currentLocation.city + ", " + currentLocation.country;
+        getEasyDestination();
+        getHardDestination();
     }
 
     //when reaching final destination
@@ -417,12 +405,19 @@ $(document).ready(function () {
         $("#current").text(displayLocation);
         cardEasyDestination();
         cardHardDestination();
-        NewCards();
+        newCards();
     })
 
 
     $(document).on("click", ".incorrect", function () {
-        // Show other question
+        incorrect++;
+        console.log(incorrect);
+        if (incorrect === 1) {
+            $(this).closest("div").html("Sorry, that was incorrect! Try for the other destination!");
+        } else if (incorrect === 2) {
+            goRand();
+            incorrect = 0;
+        }
     })
 
     cardEasyDestination();
