@@ -14,8 +14,8 @@ $(document).ready(function () {
         }
     }
     */
-      //initializes the dropdown in the start modal
-      $('select').formSelect();
+    //initializes the dropdown in the start modal
+    $('select').formSelect();
     var countries = {
         usa: {
             city: "New York City",
@@ -400,7 +400,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     $(document).on("click", ".correct", function () {
         $("#current").text(displayLocation);
         cardEasyDestination();
