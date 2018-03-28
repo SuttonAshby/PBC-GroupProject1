@@ -427,10 +427,10 @@ $(document).ready(function () {
     var database = firebase.database()
     var playerChoices = function () { //on click to submit player name
         if (userName === undefined) {
-            userName = $(nameInput).val().trim();
+            userName = $("#icon_prefix2").val().trim();
             userName = JSON.stringify(userName);
         }
-        categoryChoice = $(categoryInput)
+        categoryChoice = $("#dropdown option:selected").val()
     }
 
     $("#submit").on("click", playerChoices)

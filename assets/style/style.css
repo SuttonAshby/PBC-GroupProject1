@@ -12,16 +12,14 @@
     background: dodgerblue;
 }
 
-.timeRemaining {
-    background: darksalmon;
-}
-
 .locationChoice1 {
-    background: darksalmon;
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.8);
 }
 
 .locationChoice2 {
-    background: darksalmon;
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.8);
 }
 
 body .flip-clock-wrapper ul li a div div.inn, body .flip-clock-small-wrapper ul li a div div.inn { 
@@ -36,7 +34,7 @@ body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper 
 }
 
 .clock-builder-output {
-    min-width: 318px;
+    min-width: 330px;
 }
 
 .avatar {
@@ -65,3 +63,7 @@ body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper 
  font-size: 16px
 }
 
+/* .clock-builder-output {
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.3);
+} */
