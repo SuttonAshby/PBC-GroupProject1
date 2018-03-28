@@ -383,6 +383,7 @@ $(document).ready(function () {
         easyOption = currentLocation.easyLoc;
         card1 = countries[easyOption].city + ", " + countries[easyOption].country;
         $(".card1").text(card1);
+        $("#card1img").attr("src", countries[easyOption].imgLink);
         getEasyQuestion();
     };
 
@@ -390,6 +391,7 @@ $(document).ready(function () {
         hardOption = currentLocation.hardLoc;
         card2 = countries[hardOption].city + ", " + countries[hardOption].country;
         $(".card2").text(card2);
+        $("#card2img").attr("src", countries[hardOption].imgLink);
         getHardQuestion();
     };
 
@@ -397,10 +399,12 @@ $(document).ready(function () {
         if ($(this).attr("id", "card1")) {
             currentLocation = countries[easyOption];
             displayLocation = card1;
+            console.log(this);
             console.log("going to the easy place");
         } else {
             currentLocation = countries[hardOption];
             displayLocation = card2;
+            console.log(this);
             console.log("going to the hard place");
         }
 
