@@ -14,9 +14,8 @@ $(document).ready(function () {
         }
     }
     */
-   //initializes the dropdown in the start modal
-   $('select').formSelect();
-    
+    //initializes the dropdown in the start modal
+    $('select').formSelect();
     var countries = {
         usa: {
             city: "New York City",
@@ -216,29 +215,13 @@ $(document).ready(function () {
     // question topics
     var questionCategories = [
         "General Knowledge",
-        "Entertainment: Books",
-        "Entertainment: Film",
-        "Entertainment: Music",
-        "Entertainment: Musicals & Theater",
-        "Entertainment: Television",
-        "Entertainment: Video Games",
-        "Entertainment: Board Games",
-        "Entertainment: Japanese Anime & Manga",
-        "Entertainment: Cartoons & Animation",
-        "Entertainment: Comics",
         "Science & Nature",
-        "Science: Computers",
-        "Science: Mathematics",
-        "Science: Gadgets",
         "Mythology",
-        "Sports",
         "Geography",
         "History",
         "Politics",
         "Art",
-        "Celebrities",
         "Animals",
-        "Vehicles",
     ];
 
     var userName = undefined; //user name get from opening submit form. Make input required
@@ -260,6 +243,8 @@ $(document).ready(function () {
     var hardOption
     var card1
     var card2
+
+    var incorrect = 0;
 
     function getEasyQuestion() {
         var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=easy&type=multiple";
@@ -389,6 +374,7 @@ $(document).ready(function () {
         easyOption = currentLocation.easyLoc;
         card1 = countries[easyOption].city + ", " + countries[easyOption].country;
         $(".card1").text(card1);
+        $("#card1img").attr("src", countries[easyOption].imgLink);
         getEasyQuestion();
     };
 
@@ -396,6 +382,7 @@ $(document).ready(function () {
         hardOption = currentLocation.hardLoc;
         card2 = countries[hardOption].city + ", " + countries[hardOption].country;
         $(".card2").text(card2);
+        $("#card2img").attr("src", countries[hardOption].imgLink);
         getHardQuestion();
     };
 
@@ -403,10 +390,15 @@ $(document).ready(function () {
         if ($(this).attr("id", "card1")) {
             currentLocation = countries[easyOption];
             displayLocation = card1;
+            console.log(this);
+            console.log("going to the easy place");
         } else {
             currentLocation = countries[hardOption];
             displayLocation = card2;
+            console.log(this);
+            console.log("going to the hard place");
         }
+
     });
 
     $(document).on("click", ".correct", function () {
@@ -416,7 +408,7 @@ $(document).ready(function () {
         newCards();
     })
 
-    var incorrect = 0;
+
     $(document).on("click", ".incorrect", function () {
         incorrect++;
         console.log(incorrect);
