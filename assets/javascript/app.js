@@ -14,6 +14,9 @@ $(document).ready(function () {
         }
     }
     */
+   //initializes the dropdown in the start modal
+   $('select').formSelect();
+    
     var countries = {
         usa: {
             city: "New York City",

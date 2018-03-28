@@ -1,9 +1,11 @@
 .container {
     background: grey;
+    background-image: url(../images/usa.jpg);
+    background-size: cover
 }
 
 .currentLocation {
-    background: gold;
+    /* background: gold; */
 }
 
 .avatar {
@@ -36,3 +38,30 @@ body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper 
 .clock-builder-output {
     min-width: 318px;
 }
+
+.avatar {
+    visibility: hidden;
+}
+
+#current,
+#weather {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.3);
+    text-shadow:
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+       
+}
+
+#current{
+    font-size: 20px
+}
+
+#weather {
+ font-size: 16px
+}
+
