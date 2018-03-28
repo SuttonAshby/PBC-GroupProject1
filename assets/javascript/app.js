@@ -320,7 +320,7 @@ $(document).ready(function () {
         $("#cardHardQuestion").replaceWith(hardQuestionText, "<br>", hardQuestionButtons[0], "<br>", hardQuestionButtons[1], "<br>", hardQuestionButtons[2], "<br>", hardQuestionButtons[3]);
     };
 
-    function NewCards() {
+    function newCards() {
         $("#questionText").remove();
         $(".option").remove();
         cardEasyDestination();
@@ -346,7 +346,7 @@ $(document).ready(function () {
             var results = response.current_observation;
             var weather = results.weather;
             console.log(weather);
-            $("#weather").text("Current weather: " + weather);
+            $("#weather").text("Current Weather: " + weather);
         });
     }
 
@@ -366,7 +366,10 @@ $(document).ready(function () {
 
     //returns a random location from the array to be sent to due to bad weather
     var goRand = function () {
-        return randLocs[Math.floor(Math.random() * randLocs.length)]
+        currentLocation = randLocs[Math.floor(Math.random() * randLocs.length)];
+        displayLocation = currentLocation.city + ", " + currentLocation.country;
+        getEasyDestination();
+        getHardDestination();
     }
 
     //when reaching final destination
@@ -407,12 +410,20 @@ $(document).ready(function () {
         $("#current").text(displayLocation);
         cardEasyDestination();
         cardHardDestination();
-        NewCards();
+        newCards();
     })
 
-$(".incorrect").on("click", function () {
-    // Show other question
-})
+    var incorrect = 0;
+    $(document).on("click", ".incorrect", function () {
+        incorrect++;
+        console.log(incorrect);
+        if (incorrect === 1) {
+            $(this).closest("div").html("Sorry, that was incorrect! Try for the other destination!");
+        } else if (incorrect === 2) {
+            goRand();
+            incorrect = 0;
+        }
+    })
 
     cardEasyDestination();
     cardHardDestination();
