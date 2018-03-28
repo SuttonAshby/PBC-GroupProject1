@@ -435,7 +435,7 @@ $(document).ready(function () {
             userName = $("#icon_prefix2").val().trim();
             userName = JSON.stringify(userName);
         }
-        // categoryChoice = $(categoryInput)
+        categoryChoice = $("#dropdown option:selected").val()
     }
 
     $("#submit").on("click", playerChoices)
