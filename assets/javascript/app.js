@@ -16,6 +16,7 @@ $(document).ready(function () {
     */
     //initializes the dropdown in the start modal
     $('select').formSelect();
+
     var countries = {
         usa: {
             city: "New York City",
@@ -232,7 +233,7 @@ $(document).ready(function () {
     var randLocs = ["argentina", "venezuela", "norway", "southAfrica", "morocco", "djibouti",
         "yemen", "malta", "india", "turkmenistan", "indonesia", "china", "russia"]
 
-    //open trivia api call
+
     var categorie = "10";
     var easyQuestionButtons = [];
     var hardQuestionButtons = [];
@@ -246,8 +247,10 @@ $(document).ready(function () {
 
     var incorrect = 0;
 
+    //open trivia api call
+
     function getEasyQuestion() {
-        var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=easy&type=multiple";
+        var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categoryChoice + "&difficulty=easy&type=multiple";
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -278,7 +281,7 @@ $(document).ready(function () {
     };
 
     function getHardQuestion() {
-        var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categorie + "&difficulty=hard&type=multiple";
+        var queryURL = "https://opentdb.com/api.php?amount=1&categorie=" + categoryChoice + "&difficulty=hard&type=multiple";
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -415,10 +418,6 @@ $(document).ready(function () {
         }
     })
 
-    cardEasyDestination();
-    cardHardDestination();
-    getWeather();
-
     var config = {
         apiKey: "AIzaSyDhuFW_sSUhJhs9WifwBaQK1RpzFdG04uI",
         databaseURL: "https://pbc-groupproject1.firebaseio.com/"
@@ -429,6 +428,9 @@ $(document).ready(function () {
         if (userName === undefined) {
             userName = $("#icon_prefix2").val().trim();
             userName = JSON.stringify(userName);
+            cardEasyDestination();
+            cardHardDestination();
+            getWeather();
         }
         categoryChoice = $("#dropdown option:selected").val()
     }
