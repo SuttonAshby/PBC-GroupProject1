@@ -371,8 +371,8 @@ $(document).ready(function () {
     var goRand = function () {
         currentLocation = randLocs[Math.floor(Math.random() * randLocs.length)];
         displayLocation = currentLocation.city + ", " + currentLocation.country;
-        getEasyDestination();
-        getHardDestination();
+        cardEasyDestination();
+        cardHardDestination();
     }
 
     //when reaching final destination
@@ -410,10 +410,9 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".correct", function () {
-        $("#current").text(displayLocation);
         cardEasyDestination();
         cardHardDestination();
-        newCards();
+        // newCards();
     })
 
     var incorrect = 0;
