@@ -12,10 +12,6 @@
     background: dodgerblue;
 }
 
-.timeRemaining {
-    background: darksalmon;
-}
-
 .locationChoice1 {
     background: darksalmon;
 }
@@ -36,7 +32,7 @@ body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper 
 }
 
 .clock-builder-output {
-    min-width: 318px;
+    min-width: 330px;
 }
 
 .avatar {
@@ -65,3 +61,7 @@ body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper 
  font-size: 16px
 }
 
+.clock-builder-output {
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.3);
+}
