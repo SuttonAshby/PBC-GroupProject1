@@ -312,14 +312,11 @@ $(document).ready(function () {
     };
 
     function newCards() {
-        $("#questionText").remove();
-        $(".option").remove();
+        $("#cardHardQuestion").html("");
+        $("#cardEasyQuestion").html("");
+        $("#current").text(displayLocation);
         cardEasyDestination();
         cardHardDestination();
-        $("#card1").replaceWith(card1);
-        console.log("card1 " + card1);
-        $("#card2").replaceWith(card2);
-        console.log("card2 " + card2);
     }
 
     // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
@@ -357,10 +354,10 @@ $(document).ready(function () {
 
     //returns a random location from the array to be sent to due to bad weather
     var goRand = function () {
-        currentLocation = randLocs[Math.floor(Math.random() * randLocs.length)];
+        randomLocation = randLocs[Math.floor(Math.random() * randLocs.length)];
+        currentLocation = countries[randomLocation];
         displayLocation = currentLocation.city + ", " + currentLocation.country;
-        getEasyDestination();
-        getHardDestination();
+        newCards();
     }
 
     //when reaching final destination
@@ -375,6 +372,8 @@ $(document).ready(function () {
 
     function cardEasyDestination() {
         easyOption = currentLocation.easyLoc;
+        console.log(currentLocation);
+        console.log(easyOption);
         card1 = countries[easyOption].city + ", " + countries[easyOption].country;
         $(".card1").text(card1);
         $("#card1img").attr("src", countries[easyOption].imgLink);
@@ -390,24 +389,20 @@ $(document).ready(function () {
     };
 
     $(document).on("click", ".card", function () {
-        if ($(this).attr("id", "card1")) {
+        if ($(this).attr("id") === "card1") {
             currentLocation = countries[easyOption];
             displayLocation = card1;
             console.log(this);
             console.log("going to the easy place");
-        } else {
+        } else if ($(this).attr("id") === "card2") {
             currentLocation = countries[hardOption];
             displayLocation = card2;
             console.log(this);
             console.log("going to the hard place");
         }
-
     });
 
     $(document).on("click", ".correct", function () {
-        $("#current").text(displayLocation);
-        cardEasyDestination();
-        cardHardDestination();
         newCards();
     })
 
@@ -465,8 +460,22 @@ $(document).ready(function () {
         });
         $("#leaderboard").append("<hr><tr><td>" + userName + "</td><td>" + TOTALTIME + "</td><td>" + categoryChoice + "</td><tr>")
     };
+//start game modal
+    $('#modal1').modal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        inDuration: 300, // Transition in duration
+        outDuration: 200, // Transition out duration
+        startingTop: '4%', // Starting top style attribute
+        endingTop: '10%', // Ending top style attribute
+        //ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        //console.log(modal, trigger);
+        // },
+        //!!!!!!!!!!!!!!!!!!!!CALLBACK FOR MODAL CLOSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //complete: function() { alert('Closed'); }  
+    });
 
-    $('.modal').modal({
+    $('#endModal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: .5, // Opacity of modal background
         inDuration: 300, // Transition in duration
