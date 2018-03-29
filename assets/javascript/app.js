@@ -317,6 +317,7 @@ $(document).ready(function () {
         $("#current").text(displayLocation);
         cardEasyDestination();
         cardHardDestination();
+        $(".container").css("background-image", "url(" + currentLocation.imgLink + ")")
     }
 
     // Calling weather API, getting current conditions in city user is going to, and changing TOTALTIME according to degree of weather
@@ -453,7 +454,7 @@ $(document).ready(function () {
                     play: 'play',
                     wrapper: 'flip-clock-small-wrapper'
                 };
-                var countdown = 0;
+                countdown = 0;
                 //1521851280 - ((new Date().getTime())/1000); // from: 03/23/2018 08:28 pm -0400
                 //countdown = Math.max(1, countdown);
                 $('.clock-builder-output').FlipClock(countdown, opts);
