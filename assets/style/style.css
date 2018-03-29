@@ -4,9 +4,9 @@
     background-size: cover
 }
 
-.currentLocation {
-    /* background: gold; */
-}
+/* .currentLocation {
+    background: gold;
+} */
 
 .avatar {
     background: dodgerblue;
@@ -67,3 +67,8 @@ body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper 
     background: rgba(255,255,255);
     background: rgba(255,255,255,.3);
 } */
+
+#card1,
+#card2 {
+    visibility: hidden;
+}
