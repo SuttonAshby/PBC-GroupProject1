@@ -472,11 +472,6 @@ $(document).ready(function () {
 
         $("#beginButton").css("visibility", "hidden")
         categoryChoice = $("#dropdown option:selected").val()
-<<<<<<< HEAD
-=======
-
-        $("#modal1").removeClass("open") //ideally this should be toggled instead
->>>>>>> efe6472efdc7df491ed77cdb5d438a180dcc9006
     }
 
     $("#submit").on("click", playerChoices)
