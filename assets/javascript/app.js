@@ -23,9 +23,9 @@ $(document).ready(function () {
             country: "United States of America",
             questionType: "easy",
             easyLoc: "canada",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "mexico",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/usa.jpg"
         },
         mexico: {
@@ -33,9 +33,9 @@ $(document).ready(function () {
             country: "Mexico",
             questionType: "hard",
             easyLoc: "venezuela",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "argentina",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/mexico.jpg"
         },
         canada: {
@@ -43,9 +43,9 @@ $(document).ready(function () {
             country: "Canada",
             questionType: "easy",
             easyLoc: "venezuela",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "norway",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/canada.jpg"
         },
         argentina: {
@@ -53,9 +53,9 @@ $(document).ready(function () {
             country: "Argentina",
             questionType: "hard",
             easyLoc: "morocco",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "southAfrica",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/argentina.jpg"
         },
         venezuela: {
@@ -63,9 +63,9 @@ $(document).ready(function () {
             country: "Venezuela",
             questionType: "easy",
             easyLoc: "morocco",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "southAfrica",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/venezuela.jpg"
         },
         norway: {
@@ -73,9 +73,9 @@ $(document).ready(function () {
             country: "Norway",
             questionType: "hard",
             easyLoc: "morocco",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "southAfrica",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/norway.jpg"
         },
         southAfrica: {
@@ -83,9 +83,9 @@ $(document).ready(function () {
             country: "South Africa",
             questionType: "hard",
             easyLoc: "yemen",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "djibouti",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/southAfrica.jpg"
         },
         morocco: {
@@ -93,9 +93,9 @@ $(document).ready(function () {
             country: "Morocco",
             questionType: "easy",
             easyLoc: "yemen",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "malta",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/morocco.jpg"
         },
         djibouti: {
@@ -103,9 +103,9 @@ $(document).ready(function () {
             country: "Djibouti",
             questionType: "hard",
             easyLoc: "turkmenistan",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "india",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/djibouti.jpg"
         },
         yemen: {
@@ -113,9 +113,9 @@ $(document).ready(function () {
             country: "Yemen",
             questionType: "easy",
             easyLoc: "turkmenistan",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "india",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/yemen.jpg"
         },
         malta: {
@@ -123,9 +123,9 @@ $(document).ready(function () {
             country: "Malta",
             questionType: "hard",
             easyLoc: "turkmenistan",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "india",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/malta.jpg"
         },
         india: {
@@ -133,9 +133,9 @@ $(document).ready(function () {
             country: "India",
             questionType: "hard",
             easyLoc: "china",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "indonesia",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/india.jpg"
         },
         turkmenistan: {
@@ -143,9 +143,9 @@ $(document).ready(function () {
             country: "Turkmenistan",
             questionType: "easy",
             easyLoc: "china",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "Russia",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/turkmenistan.jpg"
         },
         indonesia: {
@@ -153,9 +153,9 @@ $(document).ready(function () {
             country: "Indonesia",
             questionType: "hard",
             easyLoc: "japan",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "papuaNewGuinea",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/indonesia.jpg"
         },
         china: {
@@ -163,9 +163,9 @@ $(document).ready(function () {
             country: "China",
             questionType: "easy",
             easyLoc: "japan",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "papuaNewGuinea",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/china.jpg"
         },
         russia: {
@@ -173,9 +173,9 @@ $(document).ready(function () {
             country: "Russia",
             questionType: "hard",
             easyLoc: "japan",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "papuaNewGuinea",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/russia.jpg"
         },
         papuaNewGuinea: {
@@ -183,9 +183,9 @@ $(document).ready(function () {
             country: "Papua New Guinea",
             questionType: "hard",
             easyLoc: "australia",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "australia",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/papuaNewGuinea.jpg"
         },
         japan: {
@@ -193,9 +193,9 @@ $(document).ready(function () {
             country: "Japan",
             questionType: "easy",
             easyLoc: "australia",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "australia",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/japan.jpg"
         },
         australia: {
@@ -203,9 +203,9 @@ $(document).ready(function () {
             country: "Australia",
             questionType: "easy",
             easyLoc: "australia",
-            easyTime: 4,
+            easyTime: 8,
             hardLoc: "australia",
-            hardTime: 8,
+            hardTime: 4,
             imgLink: "assets/images/australia.jpg"
         },
         key: function (n) {
@@ -316,7 +316,7 @@ $(document).ready(function () {
         var city = currentLocation.country + "/" + currentLocation.city + ".json";
         console.log(city);
 
-        var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
+        var queryURL = "https://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
 
         $.ajax({
             url: queryURL,
@@ -450,7 +450,7 @@ $(document).ready(function () {
             wrapper: 'flip-clock-small-wrapper'
         };
         countdown = 0;
-        //1521851280 - ((new Date().getTime())/1000); // from: 03/23/2018 08:28 pm -0400
+        //1521451240 - ((new Date().getTime())/1000); // from: 03/23/2014 04:24 pm -0400
         //countdown = Math.max(1, countdown);
         $('.clock-builder-output').FlipClock(countdown, opts);
     };
