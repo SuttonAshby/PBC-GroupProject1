@@ -72,3 +72,11 @@ body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper 
 #card2 {
     visibility: hidden;
 }
+
+.option {
+    background-color: #26A69A;
+    color: white;
+    border-radius: 5%;
+    font-size: 1.75rem;
+    font-family: "Roboto", sans-serif;
+}
