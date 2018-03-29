@@ -264,20 +264,16 @@ $(document).ready(function () {
 
     //question functions
     function makeEasyQuestionButtons() {
-        easyQuestionText = $("<h4 id='easyQuestionText'>").html(easyResponse.results[0].question);
-        easyOption1 = $("<button id='easyOption1'>").html(easyResponse.results[0].correct_answer).addClass("option correct");
-        easyQuestionButtons[0] = easyOption1;
-        easyOption2 = $("<button id='easyOption2'>").html(easyResponse.results[0].incorrect_answers[0]).addClass("option incorrect");
-        easyQuestionButtons[1] = easyOption2;
-        easyOption3 = $("<button id='easyOption3'>").html(easyResponse.results[0].incorrect_answers[1]).addClass("option incorrect");
-        easyQuestionButtons[2] = easyOption3;
-        easyOption4 = $("<button id='easyOption4'>").html(easyResponse.results[0].incorrect_answers[2]).addClass("option incorrect");
-        easyQuestionButtons[3] = easyOption4;
+        easyQuestionText = ("<h4 id='easyQuestionText'>" + easyResponse.results[0].question + "</h4>");
+        easyQuestionButtons[0] = ("<button class='option correct' id='easyOption1'>" + easyResponse.results[0].correct_answer + "</button>");
+        easyQuestionButtons[1] = ("<button class='option incorrect' id='easyOption2'>" + easyResponse.results[0].incorrect_answers[0] + "</button>");
+        easyQuestionButtons[2] = ("<button class='option incorrect' id='easyOption3'>" + easyResponse.results[0].incorrect_answers[1] + "</button>");
+        easyQuestionButtons[3] = ("<button class='option incorrect' id='easyOption4'>" + easyResponse.results[0].incorrect_answers[2] + "</button>");
         easyQuestionButtons.sort(function (a, b) { return 0.5 - Math.random() });
     };
 
     function renderEasyQuestionButtons() {
-        $("#cardEasyQuestion").replaceWith(easyQuestionText, "<br>", easyQuestionButtons[0], "<br>", easyQuestionButtons[1], "<br>", easyQuestionButtons[2], "<br>", easyQuestionButtons[3]);
+        $("#cardEasyQuestion").html(easyQuestionText + "<br>" + easyQuestionButtons[0] + "<br>" + easyQuestionButtons[1] + "<br>" + easyQuestionButtons[2] + "<br>" + easyQuestionButtons[3]);
     };
 
     function getHardQuestion() {
@@ -295,20 +291,16 @@ $(document).ready(function () {
 
     //question functions
     function makeHardQuestionButtons() {
-        hardQuestionText = $("<h4 id='hardQuestionText'>").html(hardResponse.results[0].question);
-        hardOption1 = $("<button id='hardOption1'>").html(hardResponse.results[0].correct_answer).addClass("option correct");
-        hardQuestionButtons[0] = hardOption1;
-        hardOption2 = $("<button id='hardOption2'>").html(hardResponse.results[0].incorrect_answers[0]).addClass("option incorrect");
-        hardQuestionButtons[1] = hardOption2;
-        hardOption3 = $("<button id='hardOption3'>").html(hardResponse.results[0].incorrect_answers[1]).addClass("option incorrect");
-        hardQuestionButtons[2] = hardOption3;
-        hardOption4 = $("<button id='hardOption4'>").html(hardResponse.results[0].incorrect_answers[2]).addClass("option incorrect");
-        hardQuestionButtons[3] = hardOption4;
+        hardQuestionText = ("<h4 id='hardQuestionText'>" + hardResponse.results[0].question + "</h4>");
+        hardQuestionButtons[0] = ("<button class='option correct' id='hardOption1'>" + hardResponse.results[0].correct_answer + "</button>");
+        hardQuestionButtons[1] = ("<button class='option incorrect' id='hardOption2'>" + hardResponse.results[0].incorrect_answers[0] + "</button>");
+        hardQuestionButtons[2] = ("<button class='option incorrect' id='hardOption3'>" + hardResponse.results[0].incorrect_answers[1] + "</button>");
+        hardQuestionButtons[3] = ("<button class='option incorrect' id='hardOption4'>" + hardResponse.results[0].incorrect_answers[2] + "</button>");
         hardQuestionButtons.sort(function (a, b) { return 0.5 - Math.random() });
     };
 
     function renderHardQuestionButtons() {
-        $("#cardHardQuestion").replaceWith(hardQuestionText, "<br>", hardQuestionButtons[0], "<br>", hardQuestionButtons[1], "<br>", hardQuestionButtons[2], "<br>", hardQuestionButtons[3]);
+        $("#cardHardQuestion").html(hardQuestionText + "<br>" + hardQuestionButtons[0] + "<br>" + hardQuestionButtons[1] + "<br>" + hardQuestionButtons[2] + "<br>" + hardQuestionButtons[3]);
     };
 
     function newCards() {
@@ -346,7 +338,7 @@ $(document).ready(function () {
         // Changing TOTALTIME based on current weather condition of user travel location
         if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds")) {
             TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
-        } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
+        // } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
             // Go to random location for really bad weather
         } else {
             TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
@@ -407,7 +399,6 @@ $(document).ready(function () {
         newCards();
     })
 
-
     $(document).on("click", ".incorrect", function () {
         incorrect++;
         console.log(incorrect);
@@ -416,6 +407,8 @@ $(document).ready(function () {
         } else if (incorrect === 2) {
             goRand();
             incorrect = 0;
+        } else {
+            console.log("Incorrect is a weird value:" + incorrect);
         }
     })
 
@@ -432,6 +425,7 @@ $(document).ready(function () {
         if (userName === undefined) {
             userName = $("#icon_prefix2").val().trim();
             userName = JSON.stringify(userName);
+            categoryChoice = $("#dropdown option:selected").val()
             $("#card1").css("visibility", "visible")
             $("#card2").css("visibility", "visible")
             cardEasyDestination();
@@ -460,7 +454,7 @@ $(document).ready(function () {
                 $('.clock-builder-output').FlipClock(countdown, opts);
             });
         }
-        categoryChoice = $("#dropdown option:selected").val()
+        console.log(categoryChoice);
     }
 
     $("#submit").on("click", playerChoices)
