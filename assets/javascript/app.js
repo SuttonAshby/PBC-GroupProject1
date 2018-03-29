@@ -316,7 +316,7 @@ $(document).ready(function () {
         var city = currentLocation.country + "/" + currentLocation.city + ".json";
         console.log(city);
 
-        var queryURL = "http://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
+        var queryURL = "https://api.wunderground.com/api/c2f13b0c2d6e1c55/conditions/q/" + city;
 
         $.ajax({
             url: queryURL,
