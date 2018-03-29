@@ -317,6 +317,7 @@ $(document).ready(function () {
         $("#current").text(displayLocation);
         cardEasyDestination();
         cardHardDestination();
+        //changes background image
         $(".container").css("background-image", "url(" + currentLocation.imgLink + ")")
     }
 
@@ -351,6 +352,7 @@ $(document).ready(function () {
         } else {
             TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
         }
+        // update the countdown clock with travel time
     })
 
     //returns a random location from the array to be sent to due to bad weather
@@ -363,10 +365,19 @@ $(document).ready(function () {
 
     //when reaching final destination
     var endgame = function () {
+        $("#endModal").modal()
         playerToLeaderboard() //push player info to leaderboard
         getLeaderboard() //get leaderboard for display
-        //restart game button
     }
+
+    $("#restart").on("click", function(){
+        //need to reset clock
+        TOTALTIME = 0
+        userName = undefined;
+        $("#modal1").modal()
+    })
+
+
     var currentLocation = countries.key(0);
     var displayLocation = currentLocation.city + ", " + currentLocation.country;
     $("#current").text(displayLocation);
@@ -428,6 +439,29 @@ $(document).ready(function () {
 
     var countdown;
 
+    var countdownFunc = function () {
+        FlipClock.Lang.Custom = { days: 'Days', hours: 'Hours', minutes: 'Minutes', seconds: 'Seconds' };
+        var opts = {
+            clockFace: 'DailyCounter',
+            countdown: false,
+            language: 'Custom'
+        };
+        opts.classes = {
+            active: 'flip-clock-active',
+            before: 'flip-clock-before',
+            divider: 'flip-clock-divider',
+            dot: 'flip-clock-dot',
+            label: 'flip-clock-label',
+            flip: 'flip',
+            play: 'play',
+            wrapper: 'flip-clock-small-wrapper'
+        };
+        countdown = 0;
+        //1521851280 - ((new Date().getTime())/1000); // from: 03/23/2018 08:28 pm -0400
+        //countdown = Math.max(1, countdown);
+        $('.clock-builder-output').FlipClock(countdown, opts);
+    };
+
     var playerChoices = function () { //on click to submit player name
         if (userName === undefined) {
             userName = $("#icon_prefix2").val().trim();
@@ -437,29 +471,9 @@ $(document).ready(function () {
             cardEasyDestination();
             cardHardDestination();
             getWeather();
-            $(function () {
-                FlipClock.Lang.Custom = { days: 'Days', hours: 'Hours', minutes: 'Minutes', seconds: 'Seconds' };
-                var opts = {
-                    clockFace: 'DailyCounter',
-                    countdown: false,
-                    language: 'Custom'
-                };
-                opts.classes = {
-                    active: 'flip-clock-active',
-                    before: 'flip-clock-before',
-                    divider: 'flip-clock-divider',
-                    dot: 'flip-clock-dot',
-                    label: 'flip-clock-label',
-                    flip: 'flip',
-                    play: 'play',
-                    wrapper: 'flip-clock-small-wrapper'
-                };
-                countdown = 0;
-                //1521851280 - ((new Date().getTime())/1000); // from: 03/23/2018 08:28 pm -0400
-                //countdown = Math.max(1, countdown);
-                $('.clock-builder-output').FlipClock(countdown, opts);
-            });
+            $(countdownFunc())
         }
+        $("#beginButton").css("visibility", "hidden")
         categoryChoice = $("#dropdown option:selected").val()
     }
 
@@ -483,10 +497,10 @@ $(document).ready(function () {
                 var name = child.val().Name;
                 var score = child.val().Score;
                 var category = child.val().Category;
-                $("#leaderboard").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
+                $("tbody").append("<tr><td>" + name + "</td><td>" + score + "</td><td>" + category + "</td><tr>");
             })
         });
-        $("#leaderboard").append("<hr><tr><td>" + userName + "</td><td>" + TOTALTIME + "</td><td>" + categoryChoice + "</td><tr>")
+        $("tbody").append("<hr><tr><td>" + userName + "</td><td>" + TOTALTIME + "</td><td>" + categoryChoice + "</td><tr>")
     };
 //start game modal
     $('#modal1').modal({
