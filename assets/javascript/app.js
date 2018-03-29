@@ -56,7 +56,7 @@ $(document).ready(function () {
             easyTime: 4,
             hardLoc: "southAfrica",
             hardTime: 8,
-            imgLink: "assets/images/argentia.jpg"
+            imgLink: "assets/images/argentina.jpg"
         },
         venezuela: {
             city: "Caracas",
@@ -226,15 +226,13 @@ $(document).ready(function () {
     ];
 
     var userName = undefined; //user name get from opening submit form. Make input required
-    var TOTALTIME; // starts at zero ends at time value to complete game 
+    var TOTALTIME = 0; // starts at zero ends at time value to complete game 
     var categoryChoice; //user category choice get from opening submit form. Make input required
 
     // random locations array to be sent to if there is bad weather
     var randLocs = ["argentina", "venezuela", "norway", "southAfrica", "morocco", "djibouti",
         "yemen", "malta", "india", "turkmenistan", "indonesia", "china", "russia"]
 
-
-    var categorie = "10";
     var easyQuestionButtons = [];
     var hardQuestionButtons = [];
     var easyResponse
@@ -304,8 +302,8 @@ $(document).ready(function () {
     };
 
     function newCards() {
-        $("#cardHardQuestion").html("");
-        $("#cardEasyQuestion").html("");
+        // $("#cardHardQuestion").html("");
+        // $("#cardEasyQuestion").html("");
         $("#current").text(displayLocation);
         cardEasyDestination();
         cardHardDestination();
@@ -329,23 +327,18 @@ $(document).ready(function () {
             var weather = results.weather;
             console.log(weather);
             $("#weather").text("Current Weather: " + weather);
+            // Changing TOTALTIME based on current weather condition of user travel location
+            if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds") || (weather === "Mostly Cloudy")) {
+                TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
+            // } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
+                // Go to random location for really bad weather
+            } else {
+                TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
+            }
+            // update the countdown clock with travel time
+            console.log("total time is: " + TOTALTIME);
         });
     }
-
-    $(document).on("click", ".correct", function () {
-        var city = currentLocation.country + "/" + currentLocation.city + ".json";
-        console.log(city);
-        getWeather();
-        // Changing TOTALTIME based on current weather condition of user travel location
-        if ((weather === "Clear") || (weather === "Partly Cloudy") || (weather === "Scattered Clouds")) {
-            TOTALTIME = TOTALTIME - 2; // Take 2 hours off total time for good weather travel
-        // } else if ((weather === "Squalls") || (weather === "Small Hail") || (weather === "Funnel Cloud")) {
-            // Go to random location for really bad weather
-        } else {
-            TOTALTIME = TOTALTIME + 2; // Add 2 hours to total time for bad weather travel
-        }
-        // update the countdown clock with travel time
-    })
 
     //returns a random location from the array to be sent to due to bad weather
     var goRand = function () {
@@ -355,6 +348,9 @@ $(document).ready(function () {
         newCards();
     }
 
+    if (currentLocation === "australia") {
+        endgame();
+    }
     //when reaching final destination
     var endgame = function () {
         $("#endModal").modal()
@@ -376,18 +372,18 @@ $(document).ready(function () {
 
     function cardEasyDestination() {
         easyOption = currentLocation.easyLoc;
-        console.log(currentLocation);
-        console.log(easyOption);
+        var card1Time = countries[easyOption].city + ", " + countries[easyOption].country + ": " + countries[easyOption].easyTime + " hours";
         card1 = countries[easyOption].city + ", " + countries[easyOption].country;
-        $(".card1").text(card1);
+        $(".card1").text(card1Time);
         $("#card1img").attr("src", countries[easyOption].imgLink);
         getEasyQuestion();
     };
 
     function cardHardDestination() {
         hardOption = currentLocation.hardLoc;
+        var card2Time = countries[hardOption].city + ", " + countries[hardOption].country + ": " + countries[hardOption].hardTime + " hours";
         card2 = countries[hardOption].city + ", " + countries[hardOption].country;
-        $(".card2").text(card2);
+        $(".card2").text(card2Time);
         $("#card2img").attr("src", countries[hardOption].imgLink);
         getHardQuestion();
     };
@@ -396,17 +392,21 @@ $(document).ready(function () {
         if ($(this).attr("id") === "card1") {
             currentLocation = countries[easyOption];
             displayLocation = card1;
+            TOTALTIME = TOTALTIME + currentLocation.easyTime;
             console.log(this);
             console.log("going to the easy place");
         } else if ($(this).attr("id") === "card2") {
             currentLocation = countries[hardOption];
             displayLocation = card2;
+            TOTALTIME = TOTALTIME + currentLocation.hardTime;
             console.log(this);
             console.log("going to the hard place");
         }
     });
 
     $(document).on("click", ".correct", function () {
+        var city = currentLocation.country + "/" + currentLocation.city + ".json";
+        getWeather();
         newCards();
     })
 
