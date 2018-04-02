@@ -1,0 +1,82 @@
+.container {
+    background: grey;
+    background-image: url(../images/usa.jpg);
+    background-size: cover
+}
+
+/* .currentLocation {
+    background: gold;
+} */
+
+.avatar {
+    background: dodgerblue;
+}
+
+.locationChoice1 {
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.8);
+}
+
+.locationChoice2 {
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.8);
+}
+
+body .flip-clock-wrapper ul li a div div.inn, body .flip-clock-small-wrapper ul li a div div.inn { 
+    color: #CCCCCC; 
+    background-color: #333333; 
+} 
+body .flip-clock-dot, body .flip-clock-small-wrapper .flip-clock-dot { 
+    background: #323434; 
+} 
+body .flip-clock-wrapper .flip-clock-meridium a, body .flip-clock-small-wrapper .flip-clock-meridium a { 
+    color: #323434; 
+}
+
+.clock-builder-output {
+    min-width: 330px;
+}
+
+.avatar {
+    visibility: hidden;
+}
+
+#current,
+#weather {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.3);
+    text-shadow:
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+       
+}
+
+#current{
+    font-size: 20px
+}
+
+#weather {
+ font-size: 16px
+}
+
+/* .clock-builder-output {
+    background: rgba(255,255,255);
+    background: rgba(255,255,255,.3);
+} */
+
+#card1,
+#card2 {
+    visibility: hidden;
+}
+
+.option {
+    background-color: #26A69A;
+    color: white;
+    border-radius: 5%;
+    font-size: 1.75rem;
+    font-family: "Roboto", sans-serif;
+}
